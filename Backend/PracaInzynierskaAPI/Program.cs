@@ -1,11 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using PracaInzynierskaAPI.Data;
+using PracaInzynierskaAPI.Models;
+using PracaInzynierskaAPI.Services;
+using PracaInzynierskaAPI.Services.Interfaces;
+using PracaInzynierskaAPI.SqlRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped(typeof(ISqlRepository<>), typeof(SqlRepository<>));
+builder.Services.AddTransient<IBaseItemService<Workplace>, WorkplaceService>();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
