@@ -1,0 +1,48 @@
+.menu-item {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #656262;
+    padding: 10px;
+    font-size: 13pt;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e6e4e4;
+    height: 50px;
+    width: 13vw;
+    margin-right: 0.5vw;
+    text-align: left;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+        border-left: 5px solid rgb(85, 236, 236);
+    }
+}
+
+mat-icon {
+    transform: scale(1.3);
+    margin-right: 15px;
+}
+
+span {
+    margin-left: 5px;
+    font-weight: 600;
+    font-size: 1.3vh;
+}
+
+.menu-container {
+    overflow-y: auto;
+    height: calc(79.5vh - 8vw);
+}
+
+@media (max-width: 1000px) {
+    .menu-item span {
+        display: none;
+    }
+
+    .menu-item {
+        justify-content: center;
+    }
+}

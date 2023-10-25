@@ -1,0 +1,45 @@
+.table-container {
+    padding: 20px;
+    height: 350px;
+    overflow-y: auto;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th {
+    padding: 8px;
+    text-align: left;
+    color: rgb(241, 237, 237);
+  }
+  
+  td {
+    padding: 8px;
+    text-align: left;
+    background-color: rgb(241, 241, 241);
+  }
+  
+  tr:first-child th {
+    border: none;
+    background-color: rgb(48, 47, 47);
+  }
+  
+  .icon-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .icon-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  .add-button-wrapper {
+    margin-left: 20px;
+  }
+  
+  .larger-on-hover:hover {
+    transform: scale(1.2);
+  }
