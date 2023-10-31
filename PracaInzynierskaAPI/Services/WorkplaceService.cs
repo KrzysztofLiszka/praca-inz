@@ -23,7 +23,7 @@ namespace PracaInzynierskaAPI.Services
             await _workplaceRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<Workplace>> GetAllItemsAsync()
+        public async Task<List<Workplace>> GetAllItemsAsync()
         {
             return await _workplaceRepository.GetAllAsync();
         }

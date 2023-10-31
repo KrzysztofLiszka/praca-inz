@@ -1,16 +1,16 @@
-<div class="main-container">
+<div class="main-container" [formGroup]="formGroup">
     <div class="form-container">
         <p class="form-header">ZALOGUJ SIĘ DO SYSTEMU</p>
         <p class="login-input-header">EMAIL</p>
         <div class="center-elements-inside">
-            <input>
+            <input type="email" formControlName="email">
         </div>
         <p class="login-input-header">HASŁO</p>
         <div class="center-elements-inside">
-            <input>
+            <input type="password" formControlName="password">
         </div>
         <div class="center-elements-inside">
-            <button>ZALOGUJ</button>
+            <button (click)="login()">ZALOGUJ</button>
         </div>
     </div>
 </div>

@@ -1,13 +1,11 @@
-﻿namespace PracaInzynierskaAPI.Models
+﻿namespace PracaInzynierskaAPI.DTOs
 {
-    public class User
+    public class WorkerDto
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string PasswordHash { get; set; }
         public Guid? WorkplaceId { get; set; }
-        public virtual Workplace Workplace { get; set; }
     }
 }
