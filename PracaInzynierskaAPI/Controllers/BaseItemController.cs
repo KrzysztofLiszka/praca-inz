@@ -13,7 +13,7 @@ namespace PracaInzynierskaAPI.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IEnumerable<T>> GetAllItems()
+        public async Task<List<T>> GetAllItems()
         {
             var items = await _baseItemService.GetAllItemsAsync();
 

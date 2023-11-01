@@ -51,3 +51,13 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 20px;
 }
+
+.right-section {
+    width: 85%;
+    height: 100%;
+}
+
+.lower-section {
+    display: flex; /* This will place left and right sections side by side */
+    height: 93%; /* Adjust this value as needed */
+}

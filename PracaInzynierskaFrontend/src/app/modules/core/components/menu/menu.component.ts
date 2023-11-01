@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'src/app/models';
 
 @Component({
@@ -7,21 +8,26 @@ import { MenuItem } from 'src/app/models';
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
+    constructor(private router: Router) { }
 
     menuItems: MenuItem[] = [
-        {text: "TABLICA", redirectTo: "login", matIconName: "assignment"},
-        {text: "CZAT ZESPOŁU", redirectTo: "login", matIconName: "chat"},
-        {text: "WSPÓŁPRACOWNICY", redirectTo: "login", matIconName: "diversity_3"},
-        {text: "HARMONOGRAM", redirectTo: "login", matIconName: "schedule"},
-        {text: "SPĘDZONY CZAS", redirectTo: "login", matIconName: "work_history"},
-        {text: "DOKUMENTACJA", redirectTo: "login", matIconName: "article"},
-        {text: "WIZUALIZACJE", redirectTo: "login", matIconName: "photo_library"},
-        {text: "ZARZĄDZANIE", redirectTo: "login", matIconName: "manage_accounts"},
-        {text: "OGŁOSZENIA", redirectTo: "login", matIconName: "info"}
+        //{text: "TABLICA", redirectTo: "login", matIconName: "assignment"},
+        //{text: "CZAT ZESPOŁU", redirectTo: "login", matIconName: "chat"},
+        { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", matIconName: "diversity_3" },
+        //{text: "HARMONOGRAM", redirectTo: "login", matIconName: "schedule"},
+        //{text: "SPĘDZONY CZAS", redirectTo: "login", matIconName: "work_history"},
+        //{text: "DOKUMENTACJA", redirectTo: "login", matIconName: "article"},
+        //{text: "WIZUALIZACJE", redirectTo: "login", matIconName: "photo_library"},
+        { text: "ZARZĄDZANIE", redirectTo: "management", matIconName: "manage_accounts" },
+        //{text: "OGŁOSZENIA", redirectTo: "login", matIconName: "info"}
     ];
 
     hasClaim(claim?: string): boolean {
         // TODO: Replace with actual claim checking logic
         return true;
+    }
+
+    isActivated(item: MenuItem): boolean {
+        return this.router.url.includes(item.redirectTo);
     }
 }

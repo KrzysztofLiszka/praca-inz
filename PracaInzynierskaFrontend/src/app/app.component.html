@@ -1,13 +1,18 @@
-<router-outlet></router-outlet>
 <div class="main-container">
-    <div class="upper-section">
+    <div class="upper-section" *ngIf="isLoggedIn()">
         <p class="workplace-name">{{workplaceName}}</p>
+        <button (click)="logout()">WYLOGUJ</button>
     </div>
-    <div class="left-section">
-        <div class="profile-picture">
-            <img src="../assets/defaultProfilePic.png">
+    <div class="lower-section">
+        <div class="left-section" *ngIf="isLoggedIn()">
+            <div class="profile-picture">
+                <img src="../assets/defaultProfilePic.png">
+            </div>
+            <p class="username">{{username}}</p>
+            <app-menu></app-menu>
         </div>
-        <p class="username">{{username}}</p>
-        <app-menu></app-menu>
+        <div class="right-section">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>

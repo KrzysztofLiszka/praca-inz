@@ -1,8 +1,11 @@
 <div class="menu-container">
     <div *ngFor="let item of menuItems">
-        <button class="menu-item" [routerLink]="item.redirectTo" *ngIf="hasClaim(item?.requiredClaim)">
-            <span>{{item.text}}</span>
-            <mat-icon>{{item?.matIconName}}</mat-icon>
+        <button class="menu-item" 
+                [routerLink]="item.redirectTo" 
+                *ngIf="hasClaim(item?.requiredClaim)" 
+                [ngClass]="isActivated(item) ? 'activated-item' : 'not-activated-item'">
+            <span>{{ item.text }}</span>
+            <mat-icon>{{ item?.matIconName }}</mat-icon>
         </button>
     </div>
 </div>

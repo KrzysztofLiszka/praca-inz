@@ -28,7 +28,11 @@ namespace PracaInzynierskaAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Login")
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -36,7 +40,16 @@ namespace PracaInzynierskaAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("WorkplaceId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("WorkplaceId");
 
                     b.ToTable("Users");
                 });
@@ -58,6 +71,15 @@ namespace PracaInzynierskaAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Workplaces");
+                });
+
+            modelBuilder.Entity("PracaInzynierskaAPI.Models.User", b =>
+                {
+                    b.HasOne("PracaInzynierskaAPI.Models.Workplace", "Workplace")
+                        .WithMany()
+                        .HasForeignKey("WorkplaceId");
+
+                    b.Navigation("Workplace");
                 });
 #pragma warning restore 612, 618
         }

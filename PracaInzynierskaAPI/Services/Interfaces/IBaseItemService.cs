@@ -2,7 +2,7 @@
 {
     public interface IBaseItemService<T>
     {
-        Task<IEnumerable<T>> GetAllItemsAsync();
+        Task<List<T>> GetAllItemsAsync();
         Task<T> GetItemByIdAsync(Guid id);
         Task AddItemAsync(T item);
         Task UpdateItemAsync(T item);
