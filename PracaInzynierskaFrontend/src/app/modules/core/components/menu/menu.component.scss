@@ -2,7 +2,6 @@
     border: none;
     outline: none;
     cursor: pointer;
-    background: #656262;
     padding: 10px;
     font-size: 13pt;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,7 +16,7 @@
     align-items: center;
 
     &:hover {
-        border-left: 5px solid rgb(85, 236, 236);
+        border-left: 5px solid #2AA6C1;
     }
 }
 
@@ -45,4 +44,12 @@ span {
     .menu-item {
         justify-content: center;
     }
+}
+
+.activated-item {
+    background-color: #2AA6C1;
+}
+
+.not-activated-item {
+    background: #656262;
 }

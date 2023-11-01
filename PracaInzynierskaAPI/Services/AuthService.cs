@@ -82,11 +82,11 @@ namespace PracaInzynierskaAPI.Services
             return workersFromWorkplace;
         }
 
-        public async Task AssignUserToWorkplace(Guid workplaceId)
+        public async Task AssignUserToWorkplace(Workplace workplace)
         {
             var userId = _currentUserService.GetCurrentUserId();
             var user = await _userRepository.GetByIdAsync(userId);
-            user.WorkplaceId = workplaceId;
+            user.WorkplaceId = workplace.Id;
             await _userRepository.UpdateAsync(user);
         }
 

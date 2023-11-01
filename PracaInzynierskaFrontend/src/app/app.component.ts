@@ -20,4 +20,8 @@ export class AppComponent {
         localStorage.removeItem("currentUser");
         this.router.navigateByUrl("/login");
     }
+
+    isLoggedIn(): boolean {
+        return this.authService.isAuthenticated();
+    }
 }

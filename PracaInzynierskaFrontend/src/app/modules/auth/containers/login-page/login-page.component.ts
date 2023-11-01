@@ -30,4 +30,8 @@ export class LoginPageComponent implements OnDestroy {
             this.router.navigateByUrl("/");
         }));
     }
+
+    goToRegisterPage(): void {
+        this.router.navigateByUrl("/register");
+    }
 }

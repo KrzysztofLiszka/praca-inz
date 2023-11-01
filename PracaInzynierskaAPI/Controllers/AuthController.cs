@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PracaInzynierskaAPI.DTOs;
+using PracaInzynierskaAPI.Models;
 using PracaInzynierskaAPI.Services.Interfaces;
 
 namespace PracaInzynierskaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
@@ -38,13 +38,15 @@ namespace PracaInzynierskaAPI.Controllers
             return Ok(new { message = "User registered" });
         }
 
+        [Authorize]
         [HttpPost("AssignUserToWorkplace")]
-        public async Task<ActionResult> AssignUserToWorkplace(Guid workplaceId)
+        public async Task<ActionResult> AssignUserToWorkplace(Workplace workplace)
         {
-            await _authService.AssignUserToWorkplace(workplaceId);
-            return Ok("User assigned");
+            await _authService.AssignUserToWorkplace(workplace);
+            return Ok(new { message = "User assigned" });
         }
 
+        [Authorize]
         [HttpGet("GetWorkersFromWorkplace")]
         public async Task<ActionResult> GetWorkersFromWorkplace(Guid workplaceId)
         {

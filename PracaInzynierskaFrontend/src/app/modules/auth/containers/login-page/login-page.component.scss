@@ -60,3 +60,14 @@
         }
     }
 }
+
+.register-link {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(85, 236, 236);;
+    &:hover {
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+}
