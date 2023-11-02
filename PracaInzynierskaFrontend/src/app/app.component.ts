@@ -8,6 +8,7 @@ import { AuthService } from './services/auth.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    readonly EMPTY_GUID = '00000000-0000-0000-0000-000000000000';
     workplaceName: string = "Nazwa_zespołu_2023";
     username: string = this.authService.currentlyLoggedUser?.name + " " + this.authService.currentlyLoggedUser?.surname;
 
@@ -21,7 +22,11 @@ export class AppComponent {
         this.router.navigateByUrl("/login");
     }
 
-    isLoggedIn(): boolean {
-        return this.authService.isAuthenticated();
+    isLoggedInAndHasTem(): boolean {
+        const workplaceId = this.authService.currentlyLoggedUser?.workplaceId;
+        const isLoggedIn = this.authService.isAuthenticated();
+        var hasTeam = true;
+        if (workplaceId == null || workplaceId == this.EMPTY_GUID) hasTeam = false;
+        return isLoggedIn && hasTeam;
     }
 }

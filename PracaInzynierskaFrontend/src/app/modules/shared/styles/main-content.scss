@@ -1,0 +1,32 @@
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.main-content {
+    width: 90%;
+    height: 90%;
+    background-color: #282626;
+    border: 2px solid #e6e4e4;
+}
+
+.upper-section {
+    width: 100%;
+    height: 10%;
+    border-bottom: 2px solid #e6e4e4;
+
+    .left-side {
+        width: 30%;
+        height: 100%;
+        border-right: 2px solid #e6e4e4;
+        text-align: center;
+        font-size: 1.7vw;
+        color: #e6e4e4;
+        font-weight: 500;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+}

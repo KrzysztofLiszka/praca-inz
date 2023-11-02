@@ -1,9 +1,4 @@
-<div class="add-button-wrapper" style="margin-top: 20px;">
-    <button mat-mini-fab class="larger-on-hover" (click)="onAddClick()" style="cursor: pointer; background-color: rgb(212, 204, 204); color: black;">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-  <div class="table-container">
+<div class="table-container">
     <table mat-table [dataSource]="dataSource">
       <ng-container *ngFor="let column of displayedColumns; let i = index" [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef> {{ displayedHeaders[i] }} </th>

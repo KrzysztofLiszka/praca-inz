@@ -1,0 +1,10 @@
+@use '../../../shared/styles/main-content.scss';
+
+.table-container {
+    border: 2px solid #e6e4e4;
+    width: 90%;
+    height: 70%;
+    margin: 0 auto;
+    margin-top: 5%;
+    overflow-y: auto;
+}

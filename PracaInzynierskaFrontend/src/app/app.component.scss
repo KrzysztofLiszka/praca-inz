@@ -10,6 +10,7 @@
     border-bottom: 2px solid #e6e4e4;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .left-section {
@@ -60,4 +61,17 @@
 .lower-section {
     display: flex; /* This will place left and right sections side by side */
     height: 93%; /* Adjust this value as needed */
+}
+
+.icons-wrapper {
+    margin-right: 30px;
+    mat-icon {
+        margin-right: 30px;
+        color: white;
+        transform: scale(1.5);
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.65);
+        }
+    }
 }
