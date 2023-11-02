@@ -73,23 +73,6 @@ namespace PracaInzynierskaAPI.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public async Task<List<WorkerDto>> GetWorkersFromWorkplace(Guid workplaceId)
-        {
-            var allUsers = await _userRepository.GetAllAsync();
-            var usersFromWorkplace = allUsers.Where(u => u.WorkplaceId == workplaceId);
-            var workersFromWorkplace = _mapper.Map<List<WorkerDto>>(usersFromWorkplace);
-
-            return workersFromWorkplace;
-        }
-
-        public async Task AssignUserToWorkplace(Workplace workplace)
-        {
-            var userId = _currentUserService.GetCurrentUserId();
-            var user = await _userRepository.GetByIdAsync(userId);
-            user.WorkplaceId = workplace.Id;
-            await _userRepository.UpdateAsync(user);
-        }
-
         public async Task<WorkerDto> GetCurrentlyLoggedWorker()
         {
             var userId = _currentUserService.GetCurrentUserId();

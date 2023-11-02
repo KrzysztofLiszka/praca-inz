@@ -39,22 +39,6 @@ namespace PracaInzynierskaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("AssignUserToWorkplace")]
-        public async Task<ActionResult> AssignUserToWorkplace(Workplace workplace)
-        {
-            await _authService.AssignUserToWorkplace(workplace);
-            return Ok(new { message = "User assigned" });
-        }
-
-        [Authorize]
-        [HttpGet("GetWorkersFromWorkplace")]
-        public async Task<ActionResult> GetWorkersFromWorkplace(Guid workplaceId)
-        {
-            var workersFromWorkplace = await _authService.GetWorkersFromWorkplace(workplaceId);
-            return Ok(workersFromWorkplace);
-        }
-
-        [Authorize]
         [HttpGet("GetCurrentlyLoggedUser")]
         public async Task<ActionResult> GetCurrentlyLoggedUser()
         {

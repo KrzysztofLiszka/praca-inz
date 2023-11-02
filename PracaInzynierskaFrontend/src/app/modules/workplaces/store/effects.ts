@@ -57,6 +57,7 @@ export class WorkplaceEffects {
             tap(action => {
                 this.updateCurrentUserWorkplace(action.workplaceId);
                 this.router.navigateByUrl('/management');
+                window.location.reload();
             })
         ),
         { dispatch: false }

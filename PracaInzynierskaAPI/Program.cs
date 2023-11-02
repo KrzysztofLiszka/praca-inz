@@ -44,6 +44,7 @@ builder.Services.AddScoped(typeof(ISqlRepository<>), typeof(SqlRepository<>));
 builder.Services.AddTransient<IBaseItemService<Workplace>, WorkplaceService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
+builder.Services.AddTransient<IWorkplaceService, WorkplaceService>();
 
 builder.Services.AddSwaggerGen(c =>
 {
