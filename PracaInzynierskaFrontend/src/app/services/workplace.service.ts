@@ -12,7 +12,7 @@ export class WorkplaceService extends BaseApiService {
     }
 
     assignUserToWorkplace(workplace: Workplace): Observable<any> {
-        return this.post<any>('Auth/AssignUserToWorkplace', workplace);
+        return this.post<any>('Workplace/AssignUserToWorkplace', workplace);
     }
 
     addWorkplace(workplace: Workplace): Observable<any> {

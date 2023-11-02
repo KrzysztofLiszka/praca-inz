@@ -10,6 +10,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors';
 import { ManagementModule } from './modules/management/management.module';
 import { CoworkersModule } from './modules/coworkers/coworkers.module';
+import { MaterialModule } from './modules/material/material.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [
@@ -24,7 +27,10 @@ import { CoworkersModule } from './modules/coworkers/coworkers.module';
         BrowserAnimationsModule,
         HttpClientModule,
         ManagementModule,
-        CoworkersModule
+        CoworkersModule,
+        MaterialModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot(),
     ],
     providers: [
         {

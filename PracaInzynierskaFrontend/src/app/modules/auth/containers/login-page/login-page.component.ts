@@ -27,7 +27,7 @@ export class LoginPageComponent implements OnDestroy {
         this.subscription.add(this.authService.loginToSystem(this.formGroup.value as LoginDto).subscribe(res => {
             localStorage.setItem('tokenPracaInz', res.token);
             localStorage.setItem('currentUser', JSON.stringify(res.user as WorkerDto));
-            this.router.navigateByUrl("/");
+            this.router.navigateByUrl("/management");
         }));
     }
 

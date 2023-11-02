@@ -7,9 +7,7 @@ namespace PracaInzynierskaAPI.Services.Interfaces
     {
         Task<User?> AuthenticateUser(LoginDto loginDto);
         Task<User?> RegisterUser(RegisterDto registerDto);
-        Task<List<WorkerDto>> GetWorkersFromWorkplace(Guid workplaceId);
         string GenerateJtwToken(User user);
-        Task AssignUserToWorkplace(Workplace workplace);
         Task<WorkerDto> GetCurrentlyLoggedWorker();
     }
 }

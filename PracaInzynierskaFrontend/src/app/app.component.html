@@ -1,10 +1,13 @@
 <div class="main-container">
-    <div class="upper-section" *ngIf="isLoggedIn()">
+    <div class="upper-section" *ngIf="isLoggedInAndHasTem()">
         <p class="workplace-name">{{workplaceName}}</p>
-        <button (click)="logout()">WYLOGUJ</button>
+        <div class="icons-wrapper">
+            <mat-icon>settings</mat-icon>
+            <mat-icon (click)="logout()">logout</mat-icon>
+        </div>
     </div>
     <div class="lower-section">
-        <div class="left-section" *ngIf="isLoggedIn()">
+        <div class="left-section" *ngIf="isLoggedInAndHasTem()">
             <div class="profile-picture">
                 <img src="../assets/defaultProfilePic.png">
             </div>
