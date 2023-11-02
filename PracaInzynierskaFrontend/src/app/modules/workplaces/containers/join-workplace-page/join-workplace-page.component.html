@@ -1,5 +1,5 @@
 <div class="main-container">
     <div class="table-container">
-        <app-table [dataSource]="workplaces" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders" (editClicked)="joinWorkplace($event)" (deleteClicked)="null" (addClicked)="null" />
+        <app-table [dataSource]="workplaces$ | async" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders" (editClicked)="joinWorkplace($event)" (deleteClicked)="null" (addClicked)="null" />
     </div>
 </div>

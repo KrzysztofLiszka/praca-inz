@@ -11,6 +11,8 @@ import { TokenInterceptor } from './interceptors';
 import { ManagementModule } from './modules/management/management.module';
 import { CoworkersModule } from './modules/coworkers/coworkers.module';
 import { MaterialModule } from './modules/material/material.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [
@@ -26,7 +28,9 @@ import { MaterialModule } from './modules/material/material.module';
         HttpClientModule,
         ManagementModule,
         CoworkersModule,
-        MaterialModule
+        MaterialModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot(),
     ],
     providers: [
         {
