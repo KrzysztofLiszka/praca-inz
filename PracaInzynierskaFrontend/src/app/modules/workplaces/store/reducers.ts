@@ -2,7 +2,8 @@ import { createReducer, on } from "@ngrx/store"
 import { WorkplaceActions, WorkplacesState } from "."
 
 export const initialState: WorkplacesState = {
-    workplaces: []
+    workplaces: [],
+    workersFromWorkplace: []
 }
 
 export const reducers = createReducer(
@@ -13,5 +14,12 @@ export const reducers = createReducer(
     on(WorkplaceActions.getAllItemsSuccess, (state, action) => ({
         ...state,
         workplaces: action.items
+    })),
+    on(WorkplaceActions.getAllWorkersFromWorkplace, (state) => ({
+        ...state
+    })),
+    on(WorkplaceActions.getAllWorkersFromWorkplaceSuccess, (state, action) => ({
+        ...state,
+        workersFromWorkplace: action.workersFromWorkplace
     }))
 )

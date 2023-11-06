@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Workplace } from "src/app/models";
+import { WorkerDto, Workplace } from "src/app/models";
 
 const prefix = "[Workplaces]";
 
@@ -32,8 +32,20 @@ export const joinWorkplaceFailure = createAction(
 );
 
 export const updateUserInfo = createAction(
-    `${prefix} Update Info`,
+    `${prefix} Update User Info`,
     props<{ workplaceId: string }>()
+);
+
+export const getAllWorkersFromWorkplace = createAction(`${prefix} Get All Workers From Workplace`);
+
+export const getAllWorkersFromWorkplaceSuccess = createAction(
+    `${prefix} Get All Workers From Workplace Success`,
+    props<{ workersFromWorkplace: WorkerDto[] }>()
+);
+
+export const getAllWorkersFromWorkplaceFailure = createAction(
+    `${prefix} Get All Workers From Workplace Failure`,
+    props<{ error: string }>()
 );
 
 /*

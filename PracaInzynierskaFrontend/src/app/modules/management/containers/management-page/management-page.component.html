@@ -8,5 +8,8 @@
         <div class="table-container">
             <app-table [dataSource]="items" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders"></app-table>
         </div>
+        <div class="total-count-wrapper">
+            <p>Całkowita ilość: {{items.length}}</p>
+        </div>
     </div>
 </div>

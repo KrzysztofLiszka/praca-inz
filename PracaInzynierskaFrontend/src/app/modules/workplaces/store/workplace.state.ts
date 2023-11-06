@@ -1,5 +1,6 @@
-import { Workplace } from "src/app/models";
+import { WorkerDto, Workplace } from "src/app/models";
 
 export interface WorkplacesState {
     workplaces: Workplace[];
+    workersFromWorkplace: WorkerDto[];
 }

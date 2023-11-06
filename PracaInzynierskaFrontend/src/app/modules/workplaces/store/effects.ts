@@ -34,6 +34,20 @@ export class WorkplaceEffects {
         )
     );
 
+    getWorkersFromWorkplace$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(WorkplaceActions.getAllWorkersFromWorkplace),
+            mergeMap(() => {
+                return this.itemService.getWorkersFromWorkplace().pipe(
+                    map((workersFromWorkplace) => WorkplaceActions.getAllWorkersFromWorkplaceSuccess({ workersFromWorkplace: workersFromWorkplace })),
+                    catchError((error) =>
+                        of(WorkplaceActions.getAllWorkersFromWorkplaceFailure({ error: error.message }))
+                    )
+                );
+            })
+        )
+    );
+
     joinWorkplace$ = createEffect(() =>
         this.actions$.pipe(
             ofType(WorkplaceActions.joinWorkplace),
@@ -49,7 +63,6 @@ export class WorkplaceEffects {
             )
         )
     );
-
 
     updateUserInfo$ = createEffect(() =>
         this.actions$.pipe(
