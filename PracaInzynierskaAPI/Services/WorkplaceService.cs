@@ -42,10 +42,12 @@ namespace PracaInzynierskaAPI.Services
             return await _workplaceRepository.GetByIdAsync(id);
         }
 
-        public async Task<List<WorkerDto>> GetWorkersFromWorkplace(Guid workplaceId)
+        public async Task<List<WorkerDto>> GetWorkersFromWorkplace()
         {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _userRepository.GetByIdAsync(userId);
             var allUsers = await _userRepository.GetAllAsync();
-            var usersFromWorkplace = allUsers.Where(u => u.WorkplaceId == workplaceId);
+            var usersFromWorkplace = allUsers.Where(u => u.WorkplaceId == user.WorkplaceId);
             var workersFromWorkplace = _mapper.Map<List<WorkerDto>>(usersFromWorkplace);
 
             return workersFromWorkplace;

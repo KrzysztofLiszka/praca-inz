@@ -1,5 +1,6 @@
 .table-container {
     height: 100%;
+    background-color:rgba(45,47,51,255);
 }
   
 table {
@@ -11,6 +12,10 @@ th {
     padding: 20px;
     font-weight: 500;
     color: rgb(241, 237, 237);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(28, 30, 31, 255);
 }
   
 td {
@@ -25,7 +30,8 @@ tr:first-child th {
 }
 
 tr:nth-child(odd) {
-    background-color: rgba(38,42,45,255);}
+    background-color: rgba(38,42,45,255);
+}
 
 tr:nth-child(even) {
     background-color:rgba(45,47,51,255);

@@ -5,5 +5,11 @@
                 WSPÓŁPRACOWNICY
             </div>
         </div>
+        <div class="table-container">
+            <app-table [dataSource]="cooworkers$ | async" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders"></app-table>
+        </div>
+        <div class="total-count-wrapper">
+            <p>Całkowita ilość: {{(cooworkers$ | async)?.length}}</p>
+        </div>
     </div>
 </div>

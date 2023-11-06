@@ -7,3 +7,8 @@ export const getWorkplacesSelector = createSelector(
     selectFeature,
     (state) => state.workplaces
 );
+
+export const getWorkersFromWorkplaceselector = createSelector(
+    selectFeature,
+    (state) => state.workersFromWorkplace
+);

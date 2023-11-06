@@ -5,7 +5,7 @@ namespace PracaInzynierskaAPI.Services.Interfaces
 {
     public interface IWorkplaceService
     {
-        Task<List<WorkerDto>> GetWorkersFromWorkplace(Guid workplaceId);
+        Task<List<WorkerDto>> GetWorkersFromWorkplace();
         Task AssignUserToWorkplace(Workplace workplace);
     }
 }

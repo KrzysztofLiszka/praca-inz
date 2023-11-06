@@ -28,9 +28,9 @@ namespace PracaInzynierskaAPI.Controllers
 
         [Authorize]
         [HttpGet("GetWorkersFromWorkplace")]
-        public async Task<ActionResult> GetWorkersFromWorkplace(Guid workplaceId)
+        public async Task<ActionResult> GetWorkersFromWorkplace()
         {
-            var workersFromWorkplace = await _workplaceService.GetWorkersFromWorkplace(workplaceId);
+            var workersFromWorkplace = await _workplaceService.GetWorkersFromWorkplace();
             return Ok(workersFromWorkplace);
         }
     }

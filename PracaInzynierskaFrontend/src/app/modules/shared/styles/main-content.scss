@@ -30,3 +30,22 @@
         display: flex;
     }
 }
+
+.table-container {
+    border: 2px solid #e6e4e4;
+    width: 90%;
+    height: 70%;
+    margin: 0 auto;
+    margin-top: 5%;
+    overflow-y: auto;
+}
+
+.total-count-wrapper {
+    width: 100%;
+    text-align: right;
+    p {
+        font-size: 1.2vw;
+        color: #e6e4e4;
+        margin-right: 5%;
+    }
+}
