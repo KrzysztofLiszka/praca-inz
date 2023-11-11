@@ -11,7 +11,7 @@ namespace PracaInzynierskaAPI.Controllers
     [Authorize]
     public class AssignmentController : BaseUserItemController<Assignment>
     {
-        public AssignmentController(IBaseItemService<Assignment> baseItemService, ICurrentUserService currentUserService) : base(baseItemService, currentUserService)
+        public AssignmentController(IBaseItemService<Assignment> baseItemService, ICurrentUserService currentUserService, IAuthService authService) : base(baseItemService, currentUserService, authService)
         {
         }
     }

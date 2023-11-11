@@ -1,0 +1,38 @@
+<div class="dialog-content" [formGroup]="formGroup">
+    <div class="header">DODAJ ZADANIE</div>
+    <div class="main-container">
+        <div class="field">
+            <div class="description">
+                <p>Status</p>
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="status">
+                    <mat-option *ngFor="let status of statuses" [value]="status">
+                        {{ status }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="field">
+            <div class="description">
+                <p>Nazwa</p>
+            </div>
+            <mat-form-field appearance="outline">
+                <input matInput type="text" formControlName="name" style="text-align: center;"/>
+            </mat-form-field>
+        </div>
+        <div class="field">
+            <div class="description">
+                <p>Opis</p>
+            </div>
+            <div class="text-editor">
+                <app-text-editor [formGroup]="formGroup" [nameOfFormControl]="'descriptionHtmlContent'"></app-text-editor>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="buttons">
+    <button mat-raised-button color="warn" style="background-color: green;" (click)="closeWithSaving()">Zapisz</button>
+    <button mat-raised-button color="warn" (click)="closeWithoutSaving()">Zamknij</button>
+</div>
+

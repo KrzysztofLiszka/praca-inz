@@ -42,7 +42,14 @@ namespace PracaInzynierskaAPI.Migrations
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("WorkplaceId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WorkplaceId");
 
                     b.ToTable("Assignments");
                 });
@@ -96,6 +103,21 @@ namespace PracaInzynierskaAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Workplaces");
+                });
+
+            modelBuilder.Entity("PracaInzynierskaAPI.Models.Assignment", b =>
+                {
+                    b.HasOne("PracaInzynierskaAPI.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("PracaInzynierskaAPI.Models.Workplace", "Workplace")
+                        .WithMany()
+                        .HasForeignKey("WorkplaceId");
+
+                    b.Navigation("User");
+
+                    b.Navigation("Workplace");
                 });
 
             modelBuilder.Entity("PracaInzynierskaAPI.Models.User", b =>

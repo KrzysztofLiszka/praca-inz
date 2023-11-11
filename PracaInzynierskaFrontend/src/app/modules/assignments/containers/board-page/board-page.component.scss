@@ -1,0 +1,16 @@
+@use '../../../shared/styles/main-content.scss';
+
+.columns-wrapper {
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-button {
+    margin-right: 30px;
+    font-weight: 600;
+    &:hover {
+        transform: scale(1.03);
+    }
+}

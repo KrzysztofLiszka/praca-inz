@@ -1,0 +1,16 @@
+<div [ngStyle]="{'background-color': backgroundColor}" class="column-container">
+    <div class="header-wrapper">
+        <p>{{header}}</p>
+    </div>
+    <div class="assignments-container">
+        <div *ngFor="let assignment of getAvailableAssignments()" class="assignment">
+            <div class="left-section" (click)="onEditClick(assignment)">
+                <p>{{ assignment.name }}</p>
+            </div>
+            <div class="right-section" (click)="onEditClick(assignment)">
+                <img src="../../../../../assets/defaultProfilePic.png">
+            </div>
+        </div>
+    </div>
+</div>
+  
