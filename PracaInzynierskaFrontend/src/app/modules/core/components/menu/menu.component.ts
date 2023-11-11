@@ -11,7 +11,7 @@ export class MenuComponent {
     constructor(private router: Router) { }
 
     menuItems: MenuItem[] = [
-        //{text: "TABLICA", redirectTo: "login", matIconName: "assignment"},
+        {text: "TABLICA", redirectTo: "board", matIconName: "assignment"},
         //{text: "CZAT ZESPOŁU", redirectTo: "login", matIconName: "chat"},
         { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", matIconName: "diversity_3" },
         //{text: "HARMONOGRAM", redirectTo: "login", matIconName: "schedule"},

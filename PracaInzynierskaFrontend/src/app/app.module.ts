@@ -13,6 +13,7 @@ import { CoworkersModule } from './modules/coworkers/coworkers.module';
 import { MaterialModule } from './modules/material/material.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { AssignmentsModule } from './modules/assignments/assignments.module';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { EffectsModule } from '@ngrx/effects';
         ManagementModule,
         CoworkersModule,
         MaterialModule,
+        AssignmentsModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
     ],

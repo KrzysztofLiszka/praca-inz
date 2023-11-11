@@ -11,5 +11,6 @@ namespace PracaInzynierskaAPI.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Workplace> Workplaces { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
     }
 }

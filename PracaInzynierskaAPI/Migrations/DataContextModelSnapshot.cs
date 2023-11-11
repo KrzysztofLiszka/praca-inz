@@ -22,6 +22,38 @@ namespace PracaInzynierskaAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("PracaInzynierskaAPI.Models.Assignment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescriptionHtmlContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("WorkplaceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WorkplaceId");
+
+                    b.ToTable("Assignments");
+                });
+
             modelBuilder.Entity("PracaInzynierskaAPI.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -71,6 +103,21 @@ namespace PracaInzynierskaAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Workplaces");
+                });
+
+            modelBuilder.Entity("PracaInzynierskaAPI.Models.Assignment", b =>
+                {
+                    b.HasOne("PracaInzynierskaAPI.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("PracaInzynierskaAPI.Models.Workplace", "Workplace")
+                        .WithMany()
+                        .HasForeignKey("WorkplaceId");
+
+                    b.Navigation("User");
+
+                    b.Navigation("Workplace");
                 });
 
             modelBuilder.Entity("PracaInzynierskaAPI.Models.User", b =>

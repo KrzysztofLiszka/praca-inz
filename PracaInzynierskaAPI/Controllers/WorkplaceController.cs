@@ -8,7 +8,7 @@ namespace PracaInzynierskaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class WorkplaceController : BaseItemController<Workplace>
     {
         private readonly IWorkplaceService _workplaceService;
@@ -18,7 +18,6 @@ namespace PracaInzynierskaAPI.Controllers
             _workplaceService = workplaceService;
         }
 
-        [Authorize]
         [HttpPost("AssignUserToWorkplace")]
         public async Task<ActionResult> AssignUserToWorkplace(Workplace workplace)
         {
@@ -26,7 +25,6 @@ namespace PracaInzynierskaAPI.Controllers
             return Ok(new { message = "User assigned" });
         }
 
-        [Authorize]
         [HttpGet("GetWorkersFromWorkplace")]
         public async Task<ActionResult> GetWorkersFromWorkplace()
         {
