@@ -14,7 +14,7 @@ export class MenuComponent {
         {text: "TABLICA", redirectTo: "board", matIconName: "assignment"},
         //{text: "CZAT ZESPOŁU", redirectTo: "login", matIconName: "chat"},
         { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", matIconName: "diversity_3" },
-        //{text: "HARMONOGRAM", redirectTo: "login", matIconName: "schedule"},
+        {text: "HARMONOGRAM", redirectTo: "schedule", matIconName: "schedule"},
         //{text: "SPĘDZONY CZAS", redirectTo: "login", matIconName: "work_history"},
         {text: "DOKUMENTACJE", redirectTo: "documentation", matIconName: "article"},
         //{text: "WIZUALIZACJE", redirectTo: "login", matIconName: "photo_library"},

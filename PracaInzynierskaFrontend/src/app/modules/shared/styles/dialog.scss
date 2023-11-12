@@ -73,3 +73,15 @@ mat-form-field {
 :host ::ng-deep .ck-editor__editable_inline {
     min-height: 70vh !important;
 }
+
+:host ::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+    color: #e4e4e4;
+}
+
+:host ::ng-deep .mat-mdc-select-value-text {
+    color: #e4e4e4;
+}
+
+:host ::ng-deep .mat-mdc-select-arrow svg {
+    color: #e4e4e4;
+}

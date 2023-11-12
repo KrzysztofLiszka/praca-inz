@@ -47,7 +47,7 @@ builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
 builder.Services.AddTransient<IWorkplaceService, WorkplaceService>();
 builder.Services.AddTransient<IBaseItemService<Assignment>, AssignmentService>();
 builder.Services.AddTransient<IBaseItemService<Documentation>, DocumentationService>();
-
+builder.Services.AddTransient<IBaseItemService<Schedule>, ScheduleService>();
 
 
 builder.Services.AddSwaggerGen(c =>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -29,5 +29,14 @@ export abstract class BaseApiService {
 
     protected delete<T>(url: string): Observable<T> {
         return this.httpClient.delete<T>(`${this.apiUrl}/${url}`);
+    }
+
+    protected getUserItemsWithFilters<T>(fromDate?: string, toDate?: string): Observable<T[]> {
+        if (!fromDate || !toDate) return this.httpClient.get<T[]>(`${this.apiUrl}/Schedule/GetUserItemsWithFilters`);
+        let params = new HttpParams()
+            .set('from', fromDate)
+            .set('to', toDate);
+
+        return this.httpClient.get<T[]>(`${this.apiUrl}/Schedule/GetUserItemsWithFilters`, { params });
     }
 }
