@@ -44,3 +44,14 @@ tr:nth-child(odd):hover {
 tr:nth-child(even):hover {
     background-color: rgba(45,47,51,255);
 }
+
+.icon-btn {
+    background-color: transparent;
+}
+
+mat-icon {
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.2);
+    }
+}

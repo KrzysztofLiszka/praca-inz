@@ -69,7 +69,7 @@ export class WorkplaceEffects {
             ofType(WorkplaceActions.updateUserInfo),
             tap(action => {
                 this.updateCurrentUserWorkplace(action.workplaceId);
-                this.router.navigateByUrl('/management');
+                this.router.navigateByUrl('/board');
                 window.location.reload();
             })
         ),

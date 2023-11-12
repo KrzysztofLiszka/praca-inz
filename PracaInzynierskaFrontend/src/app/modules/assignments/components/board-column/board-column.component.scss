@@ -32,10 +32,18 @@
     border: 2px solid #e6e4e4;
     display: flex;
     margin-top: 4px;
-
+    
     &:hover {
         background-color: #2AA6C1;
         cursor: pointer;
+    }
+
+    button {
+        height: 30%;
+        cursor: pointer;
+        &:hover {
+            background-color: red;
+        }
     }
 }
 

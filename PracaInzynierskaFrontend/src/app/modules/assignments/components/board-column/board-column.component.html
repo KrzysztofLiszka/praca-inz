@@ -4,6 +4,7 @@
     </div>
     <div class="assignments-container">
         <div *ngFor="let assignment of getAvailableAssignments()" class="assignment">
+            <button (click)="deleteAssignment(assignment)">X</button>
             <div class="left-section" (click)="onEditClick(assignment)">
                 <p>{{ assignment.name }}</p>
             </div>
