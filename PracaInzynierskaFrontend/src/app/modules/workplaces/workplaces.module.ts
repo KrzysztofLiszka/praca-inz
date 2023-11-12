@@ -7,11 +7,12 @@ import { reducers } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { WorkplaceEffects } from './store/effects';
+import { CreateWorkplaceDialogComponent } from './components/create-workplace-dialog/create-workplace-dialog.component';
 
 const COMPONENTS = [JoinOrCreateWorkplacePageComponent, JoinWorkplacePageComponent];
 
 @NgModule({
-    declarations: [COMPONENTS],
+    declarations: [COMPONENTS, CreateWorkplaceDialogComponent],
     imports: [
         CommonModule,
         SharedModule,

@@ -48,22 +48,6 @@ export const getAllWorkersFromWorkplaceFailure = createAction(
     props<{ error: string }>()
 );
 
-/*
-export const getItem = createAction(
-    `${prefix} Get Item By Id`,
-    props<{ id: string }>()
-);
-
-export const getItemSuccess = createAction(
-    `${prefix} Get Item By Id Success`,
-    props<{ item: ItemType }>()
-);
-
-export const getItemFailure = createAction(
-    `${prefix} Get Item By Id Failure`,
-    props<{ error: string }>()
-);
-
 export const addItem = createAction(
     `${prefix} Add Item`,
     props<{ item: ItemType }>()
@@ -78,30 +62,17 @@ export const addItemFailure = createAction(
     props<{ error: string }>()
 );
 
-export const editItem = createAction(
-    `${prefix} Edit Item`,
-    props<{ editItem: ItemType }>()
-);
-
-export const editItemSuccess = createAction(
-    `${prefix} Edit Item Success`
-);
-
-export const editItemFailure = createAction(
-    `${prefix} Edit Item Failure`,
-    props<{ error: string }>()
-);
-
-export const deleteItem = createAction(
-    `${prefix} Delete Item`,
+export const getItem = createAction(
+    `${prefix} Get Item By Id`,
     props<{ id: string }>()
 );
 
-export const deleteItemSuccess = createAction(
-    `${prefix} Delete Item Success`
+export const getItemSuccess = createAction(
+    `${prefix} Get Item By Id Success`,
+    props<{ item: ItemType }>()
 );
 
-export const deleteItemFailure = createAction(
-    `${prefix} Delete Item Failure`,
+export const getItemFailure = createAction(
+    `${prefix} Get Item By Id Failure`,
     props<{ error: string }>()
-);*/
+);

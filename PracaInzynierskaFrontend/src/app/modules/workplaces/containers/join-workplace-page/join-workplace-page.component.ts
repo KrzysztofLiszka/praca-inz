@@ -15,10 +15,10 @@ import { getWorkplacesSelector } from '../../store/selectors';
 })
 export class JoinWorkplacePageComponent implements OnInit {
     workplaces$!: Observable<Workplace[]>;
-    displayedColumns: string[] = ['name', 'code', 'actions'];
-    displayedHeaders: string[] = ['Nazwa zespołu', "Kod zespołu", 'Akcje'];
+    displayedColumns: string[] = ['name', 'code', 'join'];
+    displayedHeaders: string[] = ['Nazwa zespołu', "Kod zespołu", 'Dołącz'];
 
-    constructor(private workplaceService: WorkplaceService, private router: Router, private store: Store<AppState>) {
+    constructor(private store: Store<AppState>, private router: Router) {
         this.selectWorkplaces();
     }
 
@@ -38,10 +38,14 @@ export class JoinWorkplacePageComponent implements OnInit {
         this.store.dispatch(WorkplaceActions.joinWorkplace({ workplace: workplace }));
     }
 
-    private updateCurrentUserWorkplace(workplaceId: string): void {
-        var currentUser = JSON.parse(localStorage.getItem("currentUser") || '{}') as WorkerDto;
-        currentUser.workplaceId = workplaceId;
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    logout(): void {
+        localStorage.removeItem("tokenPracaInz");
+        localStorage.removeItem("currentUser");
+        this.router.navigateByUrl("/login");
+    }
+
+    goBack(): void {
+        this.router.navigateByUrl("/join-or-create-workplace");
     }
 
 }

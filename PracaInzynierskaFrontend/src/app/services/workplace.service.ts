@@ -11,6 +11,10 @@ export class WorkplaceService extends BaseApiService {
         return this.getAll<Workplace>('Workplace/GetAll');
     }
 
+    getWorkplace(workplaceId: string): Observable<Workplace> {
+        return this.get<Workplace>(`Workplace/Get/${workplaceId}`);
+    }
+
     getWorkersFromWorkplace(): Observable<WorkerDto[]> {
         return this.getAll<WorkerDto>('Workplace/GetWorkersFromWorkplace');
     }
@@ -20,6 +24,6 @@ export class WorkplaceService extends BaseApiService {
     }
 
     addWorkplace(workplace: Workplace): Observable<any> {
-        return this.post<any>('Workplace/Add', workplace)
+        return this.post<any>('Workplace/AddWorkplace', workplace)
     }
 }

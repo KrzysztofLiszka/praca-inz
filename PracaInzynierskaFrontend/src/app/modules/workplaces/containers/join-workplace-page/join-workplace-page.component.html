@@ -1,5 +1,12 @@
-<div class="main-container">
-    <div class="table-container">
-        <app-table [dataSource]="workplaces$ | async" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders" (editClicked)="joinWorkplace($event)" (deleteClicked)="null" (addClicked)="null" />
+<mat-icon (click)="logout()" class="logout">logout</mat-icon>
+<mat-icon (click)="goBack()" class="back">arrow_back</mat-icon>
+<div class="centered">
+    <div class="main-content">
+        <div class="upper-section">
+            DOŁĄCZ DO WYBRANEGO ZESPOŁU
+        </div>
+        <div class="table-container">
+            <app-table [dataSource]="workplaces$ | async" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders" (editClicked)="joinWorkplace($event)"/>
+        </div>
     </div>
 </div>

@@ -1,12 +1,39 @@
-.main-container {
+@use '../../../shared/styles/main-content.scss';
+
+.centered {
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.table-container {
-    width: 70%;
-    height: 70%;
+.upper-section {
+    border-right: 2px solid #e6e4e4;
+    text-align: center;
+    font-size: 1.7vw;
+    color: #e6e4e4;
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+mat-icon {
+    margin-right: 30px;
+    color: white;
+    transform: scale(3);
+    &:hover {
+        cursor: pointer;
+        transform: scale(3.5);
+    }
+}
+
+.logout {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+}
+
+.back {
+    position: absolute;
+    left: 30px;
+    top: 40px;
 }

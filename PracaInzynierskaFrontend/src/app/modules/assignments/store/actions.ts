@@ -17,7 +17,6 @@ export const getAllItemsFromWorkplaceFailure = createAction(
     props<{ error: string }>()
 );
 
-
 export const getItem = createAction(
     `${prefix} Get Item By Id`,
     props<{ id: string }>()

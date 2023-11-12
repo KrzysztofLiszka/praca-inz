@@ -55,3 +55,12 @@ mat-icon {
         transform: scale(1.2);
     }
 }
+
+.join-icon {
+    margin-left: 10px;
+    transform: scale(1.5);
+
+    &:hover {
+        transform: scale(1.7);
+    }
+}
