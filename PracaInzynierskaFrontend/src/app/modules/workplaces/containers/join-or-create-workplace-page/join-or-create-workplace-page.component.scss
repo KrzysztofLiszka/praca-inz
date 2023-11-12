@@ -50,3 +50,16 @@ p {
     margin-top: 20%;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+mat-icon {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    margin-right: 30px;
+    color: white;
+    transform: scale(3);
+    &:hover {
+        cursor: pointer;
+        transform: scale(3.5);
+    }
+}

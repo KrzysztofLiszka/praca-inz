@@ -7,6 +7,7 @@ import { AppState } from 'src/app/store/app.state';
 import { AssignmentsActions, getAssignmentsFromWorkplaceselector } from '../../store';
 import { Observable } from 'rxjs';
 import { Status } from 'src/app/constants';
+import { NotificationsService } from 'src/app/services';
 
 @Component({
     selector: 'app-board-page',
@@ -50,5 +51,4 @@ export class BoardPageComponent implements OnInit {
             this.store.dispatch(AssignmentsActions.editItem({ editItem: result }));
         });
     }
-
 }

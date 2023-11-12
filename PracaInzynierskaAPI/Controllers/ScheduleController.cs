@@ -14,18 +14,21 @@ namespace PracaInzynierskaAPI.Controllers
     {
         private readonly IBaseItemService<Schedule> _baseItemService;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IAuthService _authService;
 
         public ScheduleController(IBaseItemService<Schedule> baseItemService, ICurrentUserService currentUserService, IAuthService authService) : base(baseItemService, currentUserService, authService)
         {
             _baseItemService = baseItemService;
             _currentUserService = currentUserService;
+            _authService = authService;
         }
 
         [HttpGet("GetUserItemsWithFilters")]
         public async Task<ActionResult<List<Schedule>>> GetUserItemsWithFilters([FromQuery] DateTime? from, [FromQuery] DateTime? to)
         {
             var items = await _baseItemService.GetAllItemsAsync();
-            items = items.OrderBy(x => x.Date).ToList();
+            var user = await _authService.GetCurrentlyLoggedWorker();
+            items = items.Where(x => x.WorkplaceId == user.WorkplaceId).OrderBy(x => x.Date).ToList();
             var userId = _currentUserService.GetCurrentUserId();
             var filteredItems = items.Where(x => x.UserId == userId && x.Date >= from && x.Date <= to).ToList();
             if (!filteredItems.Any() && from != null && to != null)

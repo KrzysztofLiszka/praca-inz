@@ -2,14 +2,15 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, map, mergeMap, of, tap } from "rxjs";
 import { ScheduleService } from "src/app/services/schedule.service";
 import { SchedulesActions } from ".";
+import { NotificationsService } from "src/app/services";
 
 @Injectable()
 export class ScheduleEffects {
 
-    constructor(private actions$: Actions, private itemService: ScheduleService, private store: Store<AppState>) { }
+    constructor(private actions$: Actions, private itemService: ScheduleService, private notificationsService: NotificationsService) { }
 
     getAllItemsFromWorkplace$ = createEffect(() =>
         this.actions$.pipe(
@@ -110,7 +111,8 @@ export class ScheduleEffects {
                 SchedulesActions.editItemSuccess,
                 SchedulesActions.deleteItemSuccess,
             ),
-            map(() => SchedulesActions.getItemsFromTimeline({}))
+            map(() => SchedulesActions.getItemsFromTimeline({})),
+            tap(() => this.notificationsService.showSuccessSnackbar())
         )
     );
 }

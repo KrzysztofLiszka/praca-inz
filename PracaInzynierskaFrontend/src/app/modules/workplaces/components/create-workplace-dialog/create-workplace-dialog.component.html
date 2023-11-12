@@ -1,0 +1,27 @@
+<div class="dialog-content" [formGroup]="formGroup">
+    <div class="header">STWÓRZ WŁASNY ZESPÓŁ</div>
+    <div style="margin-top: 15%;"></div>
+    <div class="main-container">
+        <div class="field">
+            <div class="description">
+                <p>Nazwa</p>
+            </div>
+            <mat-form-field appearance="outline">
+                <input matInput type="text" formControlName="name" style="text-align: center;"/>
+            </mat-form-field>
+        </div>
+        <div class="field">
+            <div class="description">
+                <p>Kod</p>
+            </div>
+            <mat-form-field appearance="outline">
+                <input matInput type="text" formControlName="code" style="text-align: center;"/>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div class="buttons">
+    <button mat-raised-button color="warn" style="background-color: green;" (click)="closeWithSaving()">Zapisz</button>
+    <button mat-raised-button color="warn" (click)="closeWithoutSaving()">Zamknij</button>
+</div>
+

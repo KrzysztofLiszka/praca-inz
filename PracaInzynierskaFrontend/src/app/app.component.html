@@ -1,6 +1,6 @@
 <div class="main-container">
     <div class="upper-section" *ngIf="isLoggedInAndHasTem()">
-        <p class="workplace-name">{{workplaceName}}</p>
+        <p class="workplace-name">{{(workplace$ | async)?.name}}</p>
         <div class="icons-wrapper">
             <mat-icon>settings</mat-icon>
             <mat-icon (click)="logout()">logout</mat-icon>

@@ -9,8 +9,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-const MODULES = [MatTableModule, MatIconModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModule];
+
+
+const MODULES = [MatTableModule, MatIconModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MatProgressBarModule];
 
 @NgModule({
     declarations: [],

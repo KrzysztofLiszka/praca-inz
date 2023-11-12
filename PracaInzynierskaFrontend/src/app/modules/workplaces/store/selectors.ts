@@ -12,3 +12,9 @@ export const getWorkersFromWorkplaceselector = createSelector(
     selectFeature,
     (state) => state.workersFromWorkplace
 );
+
+
+export const getWorkplaceSelector = createSelector(
+    selectFeature,
+    (state) => state.workplace
+);

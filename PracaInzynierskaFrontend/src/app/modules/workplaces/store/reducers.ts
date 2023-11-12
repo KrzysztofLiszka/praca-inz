@@ -3,7 +3,8 @@ import { WorkplaceActions, WorkplacesState } from "."
 
 export const initialState: WorkplacesState = {
     workplaces: [],
-    workersFromWorkplace: []
+    workersFromWorkplace: [],
+    workplace: undefined
 }
 
 export const reducers = createReducer(
@@ -21,5 +22,12 @@ export const reducers = createReducer(
     on(WorkplaceActions.getAllWorkersFromWorkplaceSuccess, (state, action) => ({
         ...state,
         workersFromWorkplace: action.workersFromWorkplace
+    })),
+    on(WorkplaceActions.getItem, (state) => ({
+        ...state
+    })),
+    on(WorkplaceActions.getItemSuccess, (state, action) => ({
+        ...state,
+        workplace: action.item
     }))
 )

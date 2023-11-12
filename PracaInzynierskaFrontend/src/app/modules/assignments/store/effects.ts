@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
-import { AssignmentService } from "src/app/services";
+import { AssignmentService, NotificationsService } from "src/app/services";
 import { AppState } from "src/app/store/app.state";
 import { AssignmentsActions } from ".";
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, map, mergeMap, of, tap } from "rxjs";
 
 @Injectable()
 export class AssignmentEffects {
 
-    constructor(private actions$: Actions, private itemService: AssignmentService, private store: Store<AppState>) { }
+    constructor(private actions$: Actions, private itemService: AssignmentService, private notificationsService: NotificationsService) { }
 
     getAllItemsFromWorkplace$ = createEffect(() =>
         this.actions$.pipe(
@@ -96,7 +96,8 @@ export class AssignmentEffects {
                 AssignmentsActions.editItemSuccess,
                 AssignmentsActions.deleteItemSuccess
             ),
-            map(() => AssignmentsActions.getAllItemsFromWorkplace())
+            map(() => AssignmentsActions.getAllItemsFromWorkplace()),
+            tap(() => this.notificationsService.showSuccessSnackbar())
         )
     );
 }

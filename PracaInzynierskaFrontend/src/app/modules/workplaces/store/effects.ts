@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { catchError, map, mergeMap, of, tap } from "rxjs";
-import { WorkplaceService } from "src/app/services";
+import { NotificationsService, WorkplaceService } from "src/app/services";
 import { AppState } from "src/app/store/app.state";
 import { WorkplaceActions } from ".";
 import { Router } from "@angular/router";
@@ -18,7 +18,7 @@ export class WorkplaceEffects {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
     };
 
-    constructor(private actions$: Actions, private itemService: WorkplaceService, private store: Store<AppState>, private router: Router) { }
+    constructor(private actions$: Actions, private itemService: WorkplaceService, private router: Router) { }
 
     getAllItems$ = createEffect(() =>
         this.actions$.pipe(
@@ -58,6 +58,38 @@ export class WorkplaceEffects {
                     }),
                     catchError((error) =>
                         of(WorkplaceActions.joinWorkplaceFailure({ error: error.message }))
+                    )
+                )
+            )
+        )
+    );
+
+    addItem$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(WorkplaceActions.addItem),
+            mergeMap((action) =>
+                this.itemService.addWorkplace(action.item).pipe(
+                    map((newWorkplace) =>
+                        WorkplaceActions.updateUserInfo({ workplaceId: newWorkplace.id })
+                    ),
+                    catchError((error) =>
+                        of(WorkplaceActions.addItemFailure({ error: error.message }))
+                    )
+                )
+            )
+        )
+    );
+
+    getItem$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(WorkplaceActions.getItem),
+            mergeMap((action) =>
+                this.itemService.getWorkplace(action.id).pipe(
+                    map((item) =>
+                    WorkplaceActions.getItemSuccess({ item })
+                    ),
+                    catchError((error) =>
+                        of(WorkplaceActions.getItemFailure({ error: error.message }))
                     )
                 )
             )
