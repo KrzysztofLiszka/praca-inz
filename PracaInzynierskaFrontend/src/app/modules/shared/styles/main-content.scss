@@ -58,3 +58,11 @@
         margin-right: 5%;
     }
 }
+
+.add-button {
+    margin-right: 30px;
+    font-weight: 600;
+    &:hover {
+        transform: scale(1.03);
+    }
+}

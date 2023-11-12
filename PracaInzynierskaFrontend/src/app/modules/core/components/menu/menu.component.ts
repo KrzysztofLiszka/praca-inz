@@ -16,7 +16,7 @@ export class MenuComponent {
         { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", matIconName: "diversity_3" },
         //{text: "HARMONOGRAM", redirectTo: "login", matIconName: "schedule"},
         //{text: "SPĘDZONY CZAS", redirectTo: "login", matIconName: "work_history"},
-        //{text: "DOKUMENTACJA", redirectTo: "login", matIconName: "article"},
+        {text: "DOKUMENTACJE", redirectTo: "documentation", matIconName: "article"},
         //{text: "WIZUALIZACJE", redirectTo: "login", matIconName: "photo_library"},
         { text: "ZARZĄDZANIE", redirectTo: "management", matIconName: "manage_accounts" },
         //{text: "OGŁOSZENIA", redirectTo: "login", matIconName: "info"}
