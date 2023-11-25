@@ -8,6 +8,7 @@
         public string Surname { get; set; }
         public string PasswordHash { get; set; }
         public Guid? WorkplaceId { get; set; }
+        public byte[]? ProfilePicture { get; set; }
         public virtual Workplace Workplace { get; set; }
     }
 }

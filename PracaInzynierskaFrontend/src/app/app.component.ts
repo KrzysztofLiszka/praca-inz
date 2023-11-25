@@ -7,6 +7,8 @@ import { WorkplaceActions } from './modules/workplaces/store';
 import { Workplace } from './models';
 import { Observable } from 'rxjs';
 import { getWorkplaceSelector } from './modules/workplaces/store/selectors';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateProfilePictureDialogComponent, UserSettingsDialogComponent } from './modules/auth/components';
 
 @Component({
     selector: 'app-root',
@@ -18,13 +20,19 @@ export class AppComponent implements OnInit {
     workplaceName: string = "Nazwa_zespołu_2023";
     workplace$!: Observable<Workplace | undefined>;
     username: string = this.authService.currentlyLoggedUser?.name + " " + this.authService.currentlyLoggedUser?.surname;
+    profilePicture: any;
 
-    constructor(private router: Router, private authService: AuthService, private store: Store<AppState>) {
+    constructor(private router: Router, private authService: AuthService, private store: Store<AppState>, private dialog: MatDialog) {
         this.selectWorkplace();
     }
 
     ngOnInit(): void {
         this.dispatchWorkplace();
+        this.authService.getUserPicture().subscribe(res => this.profilePicture = res.file);
+    }
+
+    getBase64Data(byteFile: any): any | null {
+        return `data:image/jpg;base64,${byteFile}`;
     }
 
     logout(): void {
@@ -49,5 +57,33 @@ export class AppComponent implements OnInit {
 
     private selectWorkplace(): void {
         this.workplace$ = this.store.select(getWorkplaceSelector);
+    }
+
+    hasProfilePicture(): boolean {
+        if(this.profilePicture == "" || !this.profilePicture) return false;
+        return true;
+    }
+
+    openUserSettingsDialog(): void {
+        const dialogRef = this.dialog.open(UserSettingsDialogComponent);
+        dialogRef.afterClosed().subscribe((result) => {
+            if (!result) return;
+            this.authService.updateUser(result).subscribe(res => {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
+                currentUser.name = result.name;
+                currentUser.surname = result.surname;
+                currentUser.email = result.email;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                window.location.reload();
+            });
+        });
+    }
+
+    openUpdateProfilePicuteDialog(): void {
+        const dialogRef = this.dialog.open(UpdateProfilePictureDialogComponent);
+        dialogRef.afterClosed().subscribe((result) => {
+            if (!result) return;
+            window.location.reload();
+        });
     }
 }

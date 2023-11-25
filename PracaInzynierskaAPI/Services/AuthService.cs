@@ -88,5 +88,42 @@ namespace PracaInzynierskaAPI.Services
 
             return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
+
+        public async Task UpdateUser(UpdateUserDto updateUserDto)
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null) 
+            { 
+                return;
+            }
+            user.Email = updateUserDto.Email;
+            user.Name = updateUserDto.Name;
+            user.Surname = updateUserDto.Surname;
+
+            await _userRepository.UpdateAsync(user);
+        }
+
+        public async Task UpdateUserProfilePicture(IFormFile file)
+        {
+            var userId = _currentUserService.GetCurrentUserId();
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null) 
+            { 
+                return;
+            }
+            user.ProfilePicture = ConvertFileToByte(file);
+
+            await _userRepository.UpdateAsync(user);
+        }
+
+        private static byte[] ConvertFileToByte(IFormFile file)
+        {
+            using var ms = new MemoryStream();
+            file.CopyTo(ms);
+            var fileBytes = ms.ToArray();
+
+            return fileBytes;
+        }
     }
 }

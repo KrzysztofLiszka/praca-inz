@@ -9,5 +9,7 @@ namespace PracaInzynierskaAPI.Services.Interfaces
         Task<User?> RegisterUser(RegisterDto registerDto);
         string GenerateJtwToken(User user);
         Task<WorkerDto> GetCurrentlyLoggedWorker();
+        Task UpdateUser(UpdateUserDto updateUserDto);
+        Task UpdateUserProfilePicture(IFormFile file);
     }
 }

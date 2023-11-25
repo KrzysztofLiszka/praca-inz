@@ -11,10 +11,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
-const MODULES = [MatTableModule, MatIconModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MatProgressBarModule];
+const MODULES = [MatTableModule, MatIconModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MatProgressBarModule, DragDropModule];
 
 @NgModule({
     declarations: [],

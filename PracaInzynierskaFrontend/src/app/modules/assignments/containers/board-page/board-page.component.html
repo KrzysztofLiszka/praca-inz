@@ -1,22 +1,105 @@
 <div class="centered">
-    <div class="main-content">
-        <div class="upper-section">
-            <div class="left-side">
-                TABLICA
-            </div>
-            <div class="right-side">
-                <button mat-raised-button class="add-button" style="background-color: #656262; color: #e6e4e4;" (click)="openAddDialog()">
-                    DODAJ ZADANIE<mat-icon>add</mat-icon>
-                </button>
-            </div>
-        </div>
-        <div class="columns-wrapper">
-            <app-board-column header="DO ZROBIENIA" [assignments]="assignments$ | async" [status]="statuses[0]" (editClicked)="openEditDialog($event)"/>
-            <app-board-column backgroundColor="rgba(45,47,51,255)" header="W TRAKCIE PRACY" [assignments]="assignments$ | async" 
-                [status]="statuses[1]" (editClicked)="openEditDialog($event)"/>
-            <app-board-column header="W TRAKCIE SPRAWDZANIA" [status]="statuses[2]" [assignments]="assignments$ | async" (editClicked)="openEditDialog($event)"/>
-            <app-board-column backgroundColor="rgba(45,47,51,255)" header="GOTOWE" [status]="statuses[3]" 
-                [assignments]="assignments$ | async" (editClicked)="openEditDialog($event)"/>
-        </div>
-    </div>
+	<div class="main-content">
+		<div class="upper-section">
+			<div class="left-side">
+				TABLICA
+			</div>
+			<div class="right-side">
+				<button mat-raised-button class="add-button" style="background-color: #656262; color: #e6e4e4;"
+					(click)="openAddDialog()">
+					DODAJ ZADANIE<mat-icon>add</mat-icon>
+				</button>
+			</div>
+		</div>
+		<div class="columns-wrapper" cdkDropListGroup>
+
+			<!-- TO DO STATUS-->
+
+			<div [ngStyle]="{'background-color': 'rgba(38,42,45,255)'}" class="column-container" cdkDropList
+				(cdkDropListDropped)="drop($event, statuses[0])">
+				<div class="header-wrapper">
+					<p>DO ZROBIENIA</p>
+				</div>
+				<div class="assignments-container">
+					<div *ngFor="let assignment of getAvailableAssignments(statuses[0])" class="assignment" cdkDrag [cdkDragData]="assignment">
+						<button (click)="deleteAssignment(assignment)">X</button>
+						<div class="left-section" (click)="openEditDialog(assignment)">
+							<p>{{ assignment.name }}</p>
+						</div>
+						<div class="right-section" (click)="openEditDialog(assignment)">
+							<img *ngIf="!hasProfilePicture(assignment)"
+								src="../../../../../assets/defaultProfilePic.png">
+							<img *ngIf="hasProfilePicture(assignment)" [src]="getBase64Data(assignment)">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- IN PROGRESS STATUS -->
+
+			<div [ngStyle]="{'background-color': 'rgba(45,47,51,255)'}" class="column-container" cdkDropList
+				(cdkDropListDropped)="drop($event, statuses[1])">
+				<div class="header-wrapper">
+					<p>W TRAKCIE PRACY</p>
+				</div>
+				<div class="assignments-container">
+					<div *ngFor="let assignment of getAvailableAssignments(statuses[1])" class="assignment"  cdkDrag [cdkDragData]="assignment">
+						<button (click)="deleteAssignment(assignment)">X</button>
+						<div class="left-section" (click)="openEditDialog(assignment)">
+							<p>{{ assignment.name }}</p>
+						</div>
+						<div class="right-section" (click)="openEditDialog(assignment)">
+							<img *ngIf="!hasProfilePicture(assignment)"
+								src="../../../../../assets/defaultProfilePic.png">
+							<img *ngIf="hasProfilePicture(assignment)" [src]="getBase64Data(assignment)">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- TO BE CHECKED STATUS -->
+
+			<div [ngStyle]="{'background-color': 'rgba(38,42,45,255)'}" class="column-container" cdkDropList
+				(cdkDropListDropped)="drop($event, statuses[2])">
+				<div class="header-wrapper">
+					<p>W TRAKCIE SPRAWDZANIA</p>
+				</div>
+				<div class="assignments-container">
+					<div *ngFor="let assignment of getAvailableAssignments(statuses[2])" class="assignment"  cdkDrag [cdkDragData]="assignment">
+						<button (click)="deleteAssignment(assignment)">X</button>
+						<div class="left-section" (click)="openEditDialog(assignment)">
+							<p>{{ assignment.name }}</p>
+						</div>
+						<div class="right-section" (click)="openEditDialog(assignment)">
+							<img *ngIf="!hasProfilePicture(assignment)"
+								src="../../../../../assets/defaultProfilePic.png">
+							<img *ngIf="hasProfilePicture(assignment)" [src]="getBase64Data(assignment)">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- DONE STATUS -->
+
+			<div [ngStyle]="{'background-color': 'rgba(45,47,51,255)'}" class="column-container" cdkDropList
+				(cdkDropListDropped)="drop($event, statuses[3])">
+				<div class="header-wrapper">
+					<p>GOTOWE</p>
+				</div>
+				<div class="assignments-container">
+					<div *ngFor="let assignment of getAvailableAssignments(statuses[3])" class="assignment" cdkDrag [cdkDragData]="assignment">
+						<button (click)="deleteAssignment(assignment)">X</button>
+						<div class="left-section" (click)="openEditDialog(assignment)">
+							<p>{{ assignment.name }}</p>
+						</div>
+						<div class="right-section" (click)="openEditDialog(assignment)">
+							<img *ngIf="!hasProfilePicture(assignment)"
+								src="../../../../../assets/defaultProfilePic.png">
+							<img *ngIf="hasProfilePicture(assignment)" [src]="getBase64Data(assignment)">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
