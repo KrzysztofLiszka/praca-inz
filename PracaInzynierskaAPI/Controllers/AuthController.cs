@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PracaInzynierskaAPI.DTOs;
-using PracaInzynierskaAPI.Models;
 using PracaInzynierskaAPI.Services.Interfaces;
 
 namespace PracaInzynierskaAPI.Controllers
@@ -44,6 +43,30 @@ namespace PracaInzynierskaAPI.Controllers
         {
             var currentlyLoggedUser = await _authService.GetCurrentlyLoggedWorker();
             return Ok(currentlyLoggedUser);
+        }
+
+        [Authorize]
+        [HttpPost("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(UpdateUserDto updateUserDto)
+        {
+            await _authService.UpdateUser(updateUserDto);
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("UpdateUserProfilePicture")]
+        public async Task<IActionResult> UpdateUserProfilePicture()
+        {
+            await _authService.UpdateUserProfilePicture(Request.Form.Files[0]);
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpGet("GetUserPicture")]
+        public async Task<IActionResult> GetUserPicture()
+        {
+            var currentlyLoggedUser = await _authService.GetCurrentlyLoggedWorker();
+            return Ok(new { file = currentlyLoggedUser.ProfilePicture });
         }
     }
 }

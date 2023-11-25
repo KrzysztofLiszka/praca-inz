@@ -3,4 +3,5 @@ export interface Assignment {
     name: string;
     descriptionHtmlContent: string;
     status?: string;
+    profilePicture?: any;
 }

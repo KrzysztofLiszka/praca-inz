@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Assignment } from 'src/app/models';
 import { AppState } from 'src/app/store/app.state';
 import { AssignmentsActions } from '../../store';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-board-column',
@@ -30,4 +31,14 @@ export class BoardColumnComponent {
     deleteAssignment(assignment: Assignment): void {
         this.store.dispatch(AssignmentsActions.deleteItem({ id: assignment.id }));
     }
+
+    getBase64Data(assignment: Assignment): any | null {
+        return `data:image/jpg;base64,${assignment.profilePicture}`;
+    }
+
+    hasProfilePicture(assignment: Assignment): boolean {
+        if(!assignment.profilePicture || assignment.profilePicture == "") return false;
+        return true;
+    }
+    
 }

@@ -28,4 +28,18 @@ export class AuthService extends BaseApiService {
     getCurrentUser(): Observable<WorkerDto> {
         return this.get<WorkerDto>('Auth/GetCurrentlyLoggedUser');
     }
+
+    getUserPicture(): Observable<any> {
+        return this.get<any>('Auth/GetUserPicture');
+    }
+
+    updateUser(updateUser: any): Observable<any> {
+        return this.post<any>('Auth/UpdateUser', updateUser);
+    }
+
+    updateUserPicture(file?: any): Observable<any>{
+        const formData = new FormData();
+        formData.append('file', file);
+        return this.post<any>('Auth/UpdateUserProfilePicture', formData);
+    }
 }

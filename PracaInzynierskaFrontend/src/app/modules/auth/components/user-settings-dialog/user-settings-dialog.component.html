@@ -1,21 +1,18 @@
-<div class="dialog-content" [formGroup]="formGroup">
-    <div class="header">EDYTUJ ZADANIE</div>
-    <div class="main-container">
+<div class="dialog-content">
+    <div class="header">USTAWIENIA UŻYTKOWNIKA</div>
+    <div style="margin-top: 15%;"></div>
+    <div class="main-container"  [formGroup]="formGroup">
         <div class="field">
             <div class="description">
-                <p>Status</p>
+                <p>Email</p>
             </div>
             <mat-form-field appearance="outline">
-                <mat-select formControlName="status">
-                    <mat-option *ngFor="let status of statuses" [value]="status">
-                        {{ status }}
-                    </mat-option>
-                </mat-select>
+                <input matInput type="text" formControlName="email" style="text-align: center;"/>
             </mat-form-field>
         </div>
         <div class="field">
             <div class="description">
-                <p>Nazwa</p>
+                <p>Imię</p>
             </div>
             <mat-form-field appearance="outline">
                 <input matInput type="text" formControlName="name" style="text-align: center;"/>
@@ -23,11 +20,11 @@
         </div>
         <div class="field">
             <div class="description">
-                <p>Opis</p>
+                <p>Nazwisko</p>
             </div>
-            <div class="text-editor">
-                <app-text-editor [formGroup]="formGroup" [nameOfFormControl]="'descriptionHtmlContent'"></app-text-editor>
-            </div>
+            <mat-form-field appearance="outline">
+                <input matInput type="text" formControlName="surname" style="text-align: center;"/>
+            </mat-form-field>
         </div>
     </div>
 </div>

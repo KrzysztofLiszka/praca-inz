@@ -2,14 +2,15 @@
     <div class="upper-section" *ngIf="isLoggedInAndHasTem()">
         <p class="workplace-name">{{(workplace$ | async)?.name}}</p>
         <div class="icons-wrapper">
-            <mat-icon>settings</mat-icon>
+            <mat-icon (click)="openUserSettingsDialog()">settings</mat-icon>
             <mat-icon (click)="logout()">logout</mat-icon>
         </div>
     </div>
     <div class="lower-section">
         <div class="left-section" *ngIf="isLoggedInAndHasTem()">
-            <div class="profile-picture">
-                <img src="../assets/defaultProfilePic.png">
+            <div class="profile-picture" (click)="openUpdateProfilePicuteDialog()">
+                <img *ngIf="!hasProfilePicture()" src="../assets/defaultProfilePic.png">
+                <img *ngIf="hasProfilePicture()" [src]="getBase64Data(profilePicture)">
             </div>
             <p class="username">{{username}}</p>
             <app-menu></app-menu>

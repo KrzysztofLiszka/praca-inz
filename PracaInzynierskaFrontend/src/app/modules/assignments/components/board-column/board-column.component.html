@@ -9,7 +9,8 @@
                 <p>{{ assignment.name }}</p>
             </div>
             <div class="right-section" (click)="onEditClick(assignment)">
-                <img src="../../../../../assets/defaultProfilePic.png">
+                <img *ngIf="!hasProfilePicture(assignment)" src="../../../../../assets/defaultProfilePic.png">
+                <img *ngIf="hasProfilePicture(assignment)" [src]="getBase64Data(assignment)">
             </div>
         </div>
     </div>
