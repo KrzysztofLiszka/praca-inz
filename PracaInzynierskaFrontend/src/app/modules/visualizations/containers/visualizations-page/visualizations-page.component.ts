@@ -33,8 +33,14 @@ export class VisualizationsPageComponent implements OnInit {
         this.store.dispatch(VisualizationActions.getAllItemsFromWorkplace());
     }
 
-    openAddPage(): void {
-        this.router.navigateByUrl(`/edit-visualization/${this.EMPTY_GUID}`);
+    deleteVisualization(item: Visualization): void {
+        this.store.dispatch(VisualizationActions.deleteItem({ id: item.id }));
+    }
+
+    addVisualization(): void {
+        var visualization: any = {};
+        visualization.name = "";
+        this.store.dispatch(VisualizationActions.addItem({ item: visualization }));
     }
 
     openEditPage(visualization: Visualization): void {

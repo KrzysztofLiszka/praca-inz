@@ -31,6 +31,8 @@ namespace PracaInzynierskaAPI.Services
 
         public async Task AddItemAsync(Visualization item)
         {
+            var visualizations = await _visualizationRepository.GetAllAsync();
+            item.Name = "Wizualizacja" + (visualizations.Count + 1);
             await _visualizationRepository.AddAsync(item);
         }
 
