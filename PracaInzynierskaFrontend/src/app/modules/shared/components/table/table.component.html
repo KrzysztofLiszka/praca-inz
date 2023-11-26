@@ -16,6 +16,14 @@
           <ng-container *ngIf="column === 'join'">
             <mat-icon color="primary" (click)="onEditClick(row)" class="join-icon" style="color: rgb(47, 255, 92);">check_circle</mat-icon>
           </ng-container>
+          <ng-container *ngIf="column === 'enter-delete'">
+            <mat-icon color="primary" (click)="onEditClick(row)" class="join-icon" color="primary">expand</mat-icon>
+            <mat-icon color="warn" (click)="onDeleteClick(row)">delete</mat-icon>
+          </ng-container>
+          <ng-container *ngIf="column === 'image'">
+            <img *ngIf="!hasProfilePicture(row)" src="../../../../../assets/defaultProfilePic.png">
+            <img *ngIf="hasProfilePicture(row)" [src]="getBase64Data(row)">
+          </ng-container>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

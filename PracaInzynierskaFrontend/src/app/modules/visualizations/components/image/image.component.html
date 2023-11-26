@@ -1,0 +1,10 @@
+<div class="dialog-content">
+    <div class="header">ZDJĘCIE</div>
+    <div style="margin-top: 5%;"></div>
+    <img [src]="imageSrc">
+</div>
+<div class="buttons">
+    <button mat-raised-button color="warn" style="background-color: green;" (click)="closeWithoutSaving()">ZAMKNIJ</button>
+    <button mat-raised-button color="warn" (click)="deleteImage()">Usuń</button>
+</div>
+

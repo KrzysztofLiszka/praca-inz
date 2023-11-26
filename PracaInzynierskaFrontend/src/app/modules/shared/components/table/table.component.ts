@@ -26,4 +26,13 @@ export class TableComponent {
     onDeleteClick(item: any): void {
         this.deleteClicked.emit(item);
     }
+
+    getBase64Data(item: any): any | null {
+        return `data:image/jpg;base64,${item.profilePicture}`;
+    }
+
+    hasProfilePicture(item: any): boolean {
+        if(!item.profilePicture || item.profilePicture == "") return false;
+        return true;
+    }
 }

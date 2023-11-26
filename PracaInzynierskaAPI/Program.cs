@@ -41,13 +41,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 builder.Services.AddControllers();
 builder.Services.AddScoped(typeof(ISqlRepository<>), typeof(SqlRepository<>));
-builder.Services.AddTransient<IBaseItemService<Workplace>, WorkplaceService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
+builder.Services.AddTransient<IBaseItemService<Workplace>, WorkplaceService>();
 builder.Services.AddTransient<IWorkplaceService, WorkplaceService>();
 builder.Services.AddTransient<IBaseItemService<Assignment>, AssignmentService>();
 builder.Services.AddTransient<IBaseItemService<Documentation>, DocumentationService>();
 builder.Services.AddTransient<IBaseItemService<Schedule>, ScheduleService>();
+builder.Services.AddTransient<IBaseItemService<Visualization>, VisualizationService>();
+builder.Services.AddTransient<IVisualizationService, VisualizationService>();
 
 
 builder.Services.AddSwaggerGen(c =>
@@ -77,7 +79,9 @@ builder.Services.AddSwaggerGen(c =>
                 });
 });
 
-builder.Services.AddAutoMapper(typeof(AuthProfile)); 
+builder.Services.AddAutoMapper(typeof(AuthProfile));
+builder.Services.AddAutoMapper(typeof(ImageProfile));
+
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
