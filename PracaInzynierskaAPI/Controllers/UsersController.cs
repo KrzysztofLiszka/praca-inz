@@ -32,7 +32,7 @@ namespace PracaInzynierskaAPI.Controllers
         }
 
         [HttpDelete("DeleteUser/{id}")]
-        public async Task<IActionResult> DeleteImage(Guid id)
+        public async Task<IActionResult> DeleteUser(Guid id)
         {
             await _baseItemService.DeleteItemAsync(id);
             return Ok();
