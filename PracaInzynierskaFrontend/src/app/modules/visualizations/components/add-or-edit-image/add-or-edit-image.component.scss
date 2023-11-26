@@ -1,0 +1,22 @@
+@use '../../../shared/styles/dialog.scss';
+
+.main-container {
+    height: 10vh;
+}
+
+input[type=file]::file-selector-button {
+    border: 2px solid #e4e4e4;
+    padding: .2em .4em;
+    border-radius: .2em;
+    background-color: #656262;
+    transition: 1s;
+    color: white;
+    width: 50%;
+    height: 100%;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+input[type=file] {
+    color: #e4e4e4;
+}

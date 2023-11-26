@@ -1,4 +1,6 @@
-﻿using PracaInzynierskaAPI.Models;
+﻿using AutoMapper;
+using PracaInzynierskaAPI.DTOs;
+using PracaInzynierskaAPI.Models;
 using PracaInzynierskaAPI.Services.Interfaces;
 using PracaInzynierskaAPI.SqlRepository;
 
@@ -8,11 +10,13 @@ namespace PracaInzynierskaAPI.Services
     {
         private readonly ISqlRepository<Visualization> _visualizationRepository;
         private readonly ISqlRepository<Image> _imageRepository;
+        private readonly IMapper _mapper;
 
-        public VisualizationService(ISqlRepository<Visualization> visualizationRepository, ISqlRepository<Image> imageRepository)
+        public VisualizationService(ISqlRepository<Visualization> visualizationRepository, ISqlRepository<Image> imageRepository, IMapper mapper)
         {
             _visualizationRepository = visualizationRepository;
             _imageRepository = imageRepository;
+            _mapper = mapper;
         }
 
         public async Task AddImage(Guid visualizationId, IFormFile file)
@@ -32,7 +36,7 @@ namespace PracaInzynierskaAPI.Services
 
         public async Task DeleteImage(Guid imageId)
         {
-            await _visualizationRepository.DeleteAsync(imageId);
+            await _imageRepository.DeleteAsync(imageId);
         }
 
         public async Task DeleteItemAsync(Guid id)
@@ -55,6 +59,15 @@ namespace PracaInzynierskaAPI.Services
         public async Task UpdateItemAsync(Visualization item)
         {
             await _visualizationRepository.UpdateAsync(item);
+        }
+
+        public async Task<List<ImageDto>> GetImages(Guid visualizationId)
+        {
+            var allImages = await _imageRepository.GetAllAsync();
+            var imagesFromVisualization = allImages.Where(x => x.VisualizationId == visualizationId).ToList();
+            var imagesDtoList = _mapper.Map<List<ImageDto>>(imagesFromVisualization);
+
+            return imagesDtoList;
         }
 
         private static byte[] ConvertFileToByte(IFormFile file)

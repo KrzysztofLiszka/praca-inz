@@ -1,0 +1,21 @@
+<div class="centered">
+    <div class="main-content">
+        <div class="upper-section">
+            <div class="left-side">
+                WIZUALIZACJE
+            </div>
+            <div class="right-side">
+                <button mat-raised-button class="add-button" style="background-color: #656262; color: #e6e4e4;" (click)="openAddImageDialog()">
+                    DODAJ ZDJĘCIE<mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="table-container">
+            <div class="gallery-wrapper">
+                <div *ngFor="let image of images" class="image">
+                    <img [src]="getBase64Data(image)" alt="" (click)="openImageDialog(image)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

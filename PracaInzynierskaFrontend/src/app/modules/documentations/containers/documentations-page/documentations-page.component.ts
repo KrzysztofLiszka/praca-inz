@@ -15,7 +15,7 @@ import { AddDocumentationDialogComponent, EditDocumentationDialogComponent } fro
 export class DocumentationsPageComponent implements OnInit {
 
     documentations$!: Observable<Documentation[]>;
-    displayedColumns: string[] = ['chapterName', 'actions'];
+    displayedColumns: string[] = ['chapterName', 'enter-delete'];
     displayedHeaders: string[] = ["Nazwa rozdziału", "Akcje"];
 
     constructor(private store: Store<AppState>, private dialog: MatDialog) {

@@ -57,6 +57,7 @@ export class BoardPageComponent implements OnInit {
 
     drop(event: CdkDragDrop<Assignment[]>, status: string) {
         const item = event.item.data as Assignment;
+        if(item.status == status) return;
         const itemCopy = JSON.parse(JSON.stringify(item));
         itemCopy.status = status;
         this.store.dispatch(AssignmentsActions.editItem({ editItem: itemCopy}));

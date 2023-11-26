@@ -16,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AssignmentsModule } from './modules/assignments/assignments.module';
 import { DocumentationsModule } from './modules/documentations/documentations.module';
 import { SchedulesModule } from './modules/schedules/schedules.module';
+import { VisualizationsModule } from './modules/visualizations/visualizations.module';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import { SchedulesModule } from './modules/schedules/schedules.module';
         AssignmentsModule,
         DocumentationsModule,
         SchedulesModule,
+        VisualizationsModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
     ],

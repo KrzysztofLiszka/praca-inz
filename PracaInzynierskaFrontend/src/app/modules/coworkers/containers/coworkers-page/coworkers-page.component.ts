@@ -13,8 +13,8 @@ import { AppState } from 'src/app/store/app.state';
 })
 export class CoworkersPageComponent implements OnInit {
     cooworkers$!: Observable<WorkerDto[]>;
-    displayedColumns: string[] = ['name', 'surname', 'email'];
-    displayedHeaders: string[] = ["Imię", "Nazwisko", "Email"];
+    displayedColumns: string[] = ['name', 'surname', 'email', "image"];
+    displayedHeaders: string[] = ["Imię", "Nazwisko", "Email", "Zdjęcie"];
 
     constructor(private store: Store<AppState>) {
         this.selectCooworkers();

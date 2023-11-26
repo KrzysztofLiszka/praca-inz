@@ -8,6 +8,7 @@ import { CoworkersPageComponent } from './modules/coworkers/containers';
 import { BoardPageComponent } from './modules/assignments/containers';
 import { DocumentationsPageComponent } from './modules/documentations/containers';
 import { SchedulesPageComponent } from './modules/schedules/containers';
+import { EditVisualizationPageComponent, VisualizationsPageComponent } from './modules/visualizations/containers';
 
 const routes: Routes = [
     { path: "login", component: LoginPageComponent },
@@ -19,6 +20,8 @@ const routes: Routes = [
     { path: "board", component: BoardPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
     { path: "documentation", component: DocumentationsPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
     { path: "schedule", component: SchedulesPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
+    { path: "visualization", component: VisualizationsPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
+    { path: "edit-visualization/:id", component: EditVisualizationPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
 ];
 
 @NgModule({

@@ -79,7 +79,9 @@ builder.Services.AddSwaggerGen(c =>
                 });
 });
 
-builder.Services.AddAutoMapper(typeof(AuthProfile)); 
+builder.Services.AddAutoMapper(typeof(AuthProfile));
+builder.Services.AddAutoMapper(typeof(ImageProfile));
+
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
