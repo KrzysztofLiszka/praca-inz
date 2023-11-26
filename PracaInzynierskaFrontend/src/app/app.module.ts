@@ -17,6 +17,7 @@ import { AssignmentsModule } from './modules/assignments/assignments.module';
 import { DocumentationsModule } from './modules/documentations/documentations.module';
 import { SchedulesModule } from './modules/schedules/schedules.module';
 import { VisualizationsModule } from './modules/visualizations/visualizations.module';
+import { UsersModule } from './modules/users/users.module';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { VisualizationsModule } from './modules/visualizations/visualizations.mo
         DocumentationsModule,
         SchedulesModule,
         VisualizationsModule,
+        UsersModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
     ],

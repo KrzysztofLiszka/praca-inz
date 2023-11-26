@@ -19,6 +19,7 @@ export class MenuComponent {
         {text: "DOKUMENTACJE", redirectTo: "documentation", matIconName: "article"},
         {text: "WIZUALIZACJE", redirectTo: "visualization", matIconName: "photo_library"},
         { text: "ZARZĄDZANIE", redirectTo: "management", matIconName: "manage_accounts" },
+        { text: "UŻYTKOWNICY", redirectTo: "users", matIconName: "person" },
         //{text: "OGŁOSZENIA", redirectTo: "login", matIconName: "info"}
     ];
 

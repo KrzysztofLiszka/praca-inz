@@ -24,6 +24,9 @@
             <img *ngIf="!hasProfilePicture(row)" src="../../../../../assets/defaultProfilePic.png">
             <img *ngIf="hasProfilePicture(row)" [src]="getBase64Data(row)">
           </ng-container>
+          <ng-container *ngIf="column === 'delete'">
+            <mat-icon color="warn" (click)="onDeleteClick(row)">delete</mat-icon>
+          </ng-container>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
