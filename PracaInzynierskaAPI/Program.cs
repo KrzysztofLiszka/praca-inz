@@ -51,6 +51,8 @@ builder.Services.AddTransient<IBaseItemService<Schedule>, ScheduleService>();
 builder.Services.AddTransient<IBaseItemService<Visualization>, VisualizationService>();
 builder.Services.AddTransient<IVisualizationService, VisualizationService>();
 builder.Services.AddTransient<IBaseItemService<User>, UserService>();
+builder.Services.AddTransient<IBaseItemService<TimeSpent>, TimeSpentService>();
+
 
 
 builder.Services.AddSwaggerGen(c =>

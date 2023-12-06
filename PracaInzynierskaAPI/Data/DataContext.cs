@@ -15,7 +15,7 @@ namespace PracaInzynierskaAPI.Data
         public DbSet<Documentation> Documentations { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Visualization> Visualizations { get; set; }
-
+        public DbSet<TimeSpent> TimeSpents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,12 @@ namespace PracaInzynierskaAPI.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Visualization>()
+                .HasOne(a => a.User)
+                .WithMany()
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<TimeSpent>()
                 .HasOne(a => a.User)
                 .WithMany()
                 .HasForeignKey(a => a.UserId)
