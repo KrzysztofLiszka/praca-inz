@@ -1,1 +1,14 @@
 @use '../../../shared/styles/main-content.scss';
+
+:host ::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label
+{
+    color: #2AA6C1;
+    font-size: large;
+    font-weight: 500;
+}
+
+:host ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+    color: #e4e4e4;
+    font-size: large;
+    font-weight: 500;
+}

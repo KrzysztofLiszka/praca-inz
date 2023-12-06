@@ -11,5 +11,6 @@ namespace PracaInzynierskaAPI.Services.Interfaces
         Task<WorkerDto> GetCurrentlyLoggedWorker();
         Task UpdateUser(UpdateUserDto updateUserDto);
         Task UpdateUserProfilePicture(IFormFile file);
+        Task UpdateUserRole(string newRole, Guid userId);
     }
 }

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Roles } from 'src/app/constants';
+import { AuthService } from 'src/app/services';
 
 @Component({
     selector: 'app-table',
@@ -9,11 +11,15 @@ export class TableComponent {
     @Input() dataSource: any;
     @Input() displayedColumns: string[] = [];
     @Input() displayedHeaders: string[] = [];
+    roles = Roles;
+    selectedRoles: string[] = [];
 
     @Output() addClicked = new EventEmitter<any>();
     @Output() editClicked = new EventEmitter<any>();
     @Output() deleteClicked = new EventEmitter<any>();
     @Output() selectClicked = new EventEmitter<any>();
+
+    constructor(private authService: AuthService) { }
 
     onAddClick(): void {
         this.addClicked.emit();
@@ -32,7 +38,15 @@ export class TableComponent {
     }
 
     hasProfilePicture(item: any): boolean {
-        if(!item.profilePicture || item.profilePicture == "") return false;
+        if (!item.profilePicture || item.profilePicture == "") return false;
         return true;
+    }
+
+    getRoleValue(item: any): string {
+        return item.roleName;
+    }
+
+    changeRoleName(event: any, user: any): void {
+        this.authService.updateUserRoles(event.target.value, user).subscribe(res => window.location.reload);
     }
 }

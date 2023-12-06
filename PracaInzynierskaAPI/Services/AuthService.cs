@@ -56,7 +56,12 @@ namespace PracaInzynierskaAPI.Services
         public string GenerateJtwToken(User user)
         {
             var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
-            var userIdClaim = new Claim("userId", user.Id.ToString());
+
+            var claims = new List<Claim>
+            {
+                new Claim("userId", user.Id.ToString())
+            };
+            if (user.RoleName != null) claims.Add(new Claim(ClaimTypes.Role, user.RoleName));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -64,7 +69,7 @@ namespace PracaInzynierskaAPI.Services
                 Audience = _configuration["Jwt:Audience"],
                 Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(_configuration["Jwt:TokenExpirationMins"])),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-                Subject = new ClaimsIdentity(new[] { userIdClaim })
+                Subject = new ClaimsIdentity(claims)
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -114,6 +119,13 @@ namespace PracaInzynierskaAPI.Services
             }
             user.ProfilePicture = ConvertFileToByte(file);
 
+            await _userRepository.UpdateAsync(user);
+        }
+
+        public async Task UpdateUserRole(string newRole, Guid userId)
+        {
+            var user = await _userRepository.GetByIdAsync(userId);
+            user.RoleName = newRole;
             await _userRepository.UpdateAsync(user);
         }
 

@@ -8,5 +8,6 @@
         public string Surname { get; set; }
         public Guid? WorkplaceId { get; set; }
         public byte[]? ProfilePicture { get; set; }
+        public string? RoleName { get; set; }
     }
 }

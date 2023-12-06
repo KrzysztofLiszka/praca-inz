@@ -2,7 +2,7 @@
     <div *ngFor="let item of menuItems">
         <button class="menu-item" 
                 [routerLink]="item.redirectTo" 
-                *ngIf="hasClaim(item?.requiredClaim)" 
+                *ngIf="hasRoleToSeeSection(item)" 
                 [ngClass]="isActivated(item) ? 'activated-item' : 'not-activated-item'">
             <span>{{ item.text }}</span>
             <mat-icon>{{ item?.matIconName }}</mat-icon>

@@ -76,3 +76,17 @@ export const getItemFailure = createAction(
     `${prefix} Get Item By Id Failure`,
     props<{ error: string }>()
 );
+
+export const DeleteWorkerFromWorkplace = createAction(
+    `${prefix} Delete Worker From Workplace`,
+    props<{ id: string }>()
+);
+
+export const deleteWorkerFromWorkplaceSuccess = createAction(
+    `${prefix} Delete Worker From Workplace Success`
+);
+
+export const deleteWorkerFromWorkplaceFailure = createAction(
+    `${prefix} Delete Worker From Workplace Failure`,
+    props<{ error: string }>()
+);
