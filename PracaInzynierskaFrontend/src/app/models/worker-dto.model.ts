@@ -4,4 +4,5 @@ export interface WorkerDto {
     surname: string;
     email: string;
     workplaceId?: string;
+    roleName: string;
 }

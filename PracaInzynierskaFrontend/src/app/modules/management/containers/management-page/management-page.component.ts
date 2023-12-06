@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Roles } from 'src/app/constants';
+import { WorkerDto } from 'src/app/models';
+import { WorkplaceActions } from 'src/app/modules/workplaces/store';
+import { getWorkersFromWorkplaceselector } from 'src/app/modules/workplaces/store/selectors';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
     selector: 'app-management-page',
@@ -6,19 +13,27 @@ import { Component } from '@angular/core';
     styleUrls: ['./management-page.component.scss']
 })
 export class ManagementPageComponent {
-    displayedColumns: string[] = ['name', 'code', 'test', "jeden", "dwa", "trzy"];
-    displayedHeaders: string[] = ['Nazwa zespołu', "Kod zespołu", 'Akcje', "SDF", "aAFSFS", "SFAFSA"];
-    items: any[] = [
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-        { name: "test", code: "code", test: "test", jeden: "dsadsa", dwa: "dwa", trzy: "trzey" },
-    ];
+    cooworkers$!: Observable<WorkerDto[]>;
+    displayedColumnsCoworkers: string[] = ['name', 'surname', 'email', "image", "roleName", 'actions'];
+    displayedHeadersCoworkers: any[] = ["Nazwa", "Nazwisko", "Email", "Zdjęcie", "Rola", ''];
+
+    roles: any[] = [{ name: Roles.ACCOUNTANT }, { name: Roles.WORKER }, { name: Roles.WORKSPACE_OWNER }];
+    displayedColumnsRoles: string[] = ['name'];
+    displayedHeadersRoles: string[] = ["Nazwa roli"];
+
+    constructor(private store: Store<AppState>) {
+        this.selectCooworkers();
+    }
+
+    ngOnInit(): void {
+        this.dispatchCooworkers();
+    }
+
+    private selectCooworkers(): void {
+        this.cooworkers$ = this.store.select(getWorkersFromWorkplaceselector);
+    }
+
+    private dispatchCooworkers(): void {
+        this.store.dispatch(WorkplaceActions.getAllWorkersFromWorkplace());
+    }
 }

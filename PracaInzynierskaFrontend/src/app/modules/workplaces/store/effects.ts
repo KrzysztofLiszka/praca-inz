@@ -18,7 +18,7 @@ export class WorkplaceEffects {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
     };
 
-    constructor(private actions$: Actions, private itemService: WorkplaceService, private router: Router) { }
+    constructor(private actions$: Actions, private itemService: WorkplaceService, private router: Router, private notificationsService: NotificationsService) { }
 
     getAllItems$ = createEffect(() =>
         this.actions$.pipe(
@@ -86,10 +86,26 @@ export class WorkplaceEffects {
             mergeMap((action) =>
                 this.itemService.getWorkplace(action.id).pipe(
                     map((item) =>
-                    WorkplaceActions.getItemSuccess({ item })
+                        WorkplaceActions.getItemSuccess({ item })
                     ),
                     catchError((error) =>
                         of(WorkplaceActions.getItemFailure({ error: error.message }))
+                    )
+                )
+            )
+        )
+    );
+
+    deleteWorkerFromWorkplace$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(WorkplaceActions.DeleteWorkerFromWorkplace),
+            mergeMap((action) =>
+                this.itemService.deleteWorkerFromWorkplace(action.id).pipe(
+                    map(() =>
+                        WorkplaceActions.deleteWorkerFromWorkplaceSuccess()
+                    ),
+                    catchError((error) =>
+                        of(WorkplaceActions.deleteWorkerFromWorkplaceFailure({ error: error.message }))
                     )
                 )
             )
@@ -101,10 +117,23 @@ export class WorkplaceEffects {
             ofType(WorkplaceActions.updateUserInfo),
             tap(action => {
                 this.updateCurrentUserWorkplace(action.workplaceId);
+                localStorage.removeItem("tokenPracaInz");
+                localStorage.removeItem("currentUser");
+                this.router.navigateByUrl("/login");
                 this.router.navigateByUrl('/board');
                 window.location.reload();
             })
         ),
         { dispatch: false }
+    );
+
+    refreshOnSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(
+                WorkplaceActions.deleteWorkerFromWorkplaceSuccess,
+            ),
+            map(() => WorkplaceActions.getAllWorkersFromWorkplace()),
+            tap(() => this.notificationsService.showSuccessSnackbar())
+        )
     );
 }

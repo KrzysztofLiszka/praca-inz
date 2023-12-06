@@ -10,7 +10,7 @@ export class AuthService extends BaseApiService {
     get currentlyLoggedUser(): WorkerDto {
         const currentUser = localStorage.getItem('currentUser') || '{}';
         return JSON.parse(currentUser) as WorkerDto;
-    }   
+    }
 
     isAuthenticated(): boolean {
         const token = localStorage.getItem('tokenPracaInz');
@@ -37,9 +37,13 @@ export class AuthService extends BaseApiService {
         return this.post<any>('Auth/UpdateUser', updateUser);
     }
 
-    updateUserPicture(file?: any): Observable<any>{
+    updateUserPicture(file?: any): Observable<any> {
         const formData = new FormData();
         formData.append('file', file);
         return this.post<any>('Auth/UpdateUserProfilePicture', formData);
+    }
+
+    updateUserRoles(newRoleName: string, updateUser: any): Observable<any> {
+        return this.get<any>('Auth/UpdateUserRole/' + newRoleName + '/' + updateUser.id);
     }
 }

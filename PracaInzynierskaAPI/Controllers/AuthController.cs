@@ -68,5 +68,13 @@ namespace PracaInzynierskaAPI.Controllers
             var currentlyLoggedUser = await _authService.GetCurrentlyLoggedWorker();
             return Ok(new { file = currentlyLoggedUser.ProfilePicture });
         }
+
+        [Authorize]
+        [HttpGet("UpdateUserRole/{newRole}/{userId}")]
+        public async Task<IActionResult> UpdateUserRole([FromRoute] string newRole, [FromRoute]Guid userId)
+        {
+            await _authService.UpdateUserRole(newRole, userId);
+            return Ok();
+        }
     }
 }

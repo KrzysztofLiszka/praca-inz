@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Roles } from 'src/app/constants';
 import { MenuItem } from 'src/app/models';
 
 @Component({
@@ -11,21 +12,19 @@ export class MenuComponent {
     constructor(private router: Router) { }
 
     menuItems: MenuItem[] = [
-        {text: "TABLICA", redirectTo: "board", matIconName: "assignment"},
-        //{text: "CZAT ZESPOŁU", redirectTo: "login", matIconName: "chat"},
-        { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", matIconName: "diversity_3" },
-        {text: "HARMONOGRAM", redirectTo: "schedule", matIconName: "schedule"},
+        {text: "TABLICA", redirectTo: "board", matIconName: "assignment", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER]},
+        { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", matIconName: "diversity_3", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
+        {text: "HARMONOGRAM", redirectTo: "schedule", matIconName: "schedule", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER]},
         //{text: "SPĘDZONY CZAS", redirectTo: "login", matIconName: "work_history"},
-        {text: "DOKUMENTACJE", redirectTo: "documentation", matIconName: "article"},
-        {text: "WIZUALIZACJE", redirectTo: "visualization", matIconName: "photo_library"},
-        { text: "ZARZĄDZANIE", redirectTo: "management", matIconName: "manage_accounts" },
-        { text: "UŻYTKOWNICY", redirectTo: "users", matIconName: "person" },
-        //{text: "OGŁOSZENIA", redirectTo: "login", matIconName: "info"}
+        {text: "DOKUMENTACJE", redirectTo: "documentation", matIconName: "article", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER]},
+        {text: "WIZUALIZACJE", redirectTo: "visualization", matIconName: "photo_library", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER]},
+        { text: "ZARZĄDZANIE", redirectTo: "management", matIconName: "manage_accounts", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKSPACE_OWNER] },
+        { text: "UŻYTKOWNICY", redirectTo: "users", matIconName: "person", rolesThatSeeSection: [Roles.SYSTEM_ADMIN] },
     ];
 
-    hasClaim(claim?: string): boolean {
-        // TODO: Replace with actual claim checking logic
-        return true;
+    hasRoleToSeeSection(menuItem: MenuItem): boolean {
+        const currentUserRoleName = JSON.parse(localStorage.getItem('currentUser') as string)?.roleName;
+        return menuItem.rolesThatSeeSection.includes(currentUserRoleName);
     }
 
     isActivated(item: MenuItem): boolean {

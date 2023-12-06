@@ -8,7 +8,7 @@ import { WorkerDto, Workplace } from '../models';
 })
 export class WorkplaceService extends BaseApiService {
     getAllWorkplaces(): Observable<Workplace[]> {
-        return this.getAll<Workplace>('Workplace/GetAll');
+        return this.getAll<Workplace>('Workplace/GetAllWorkplaces');
     }
 
     getWorkplace(workplaceId: string): Observable<Workplace> {
@@ -24,6 +24,10 @@ export class WorkplaceService extends BaseApiService {
     }
 
     addWorkplace(workplace: Workplace): Observable<any> {
-        return this.post<any>('Workplace/AddWorkplace', workplace)
+        return this.post<any>('Workplace/AddWorkplace', workplace);
+    }
+
+    deleteWorkerFromWorkplace(id: string): Observable<any> {
+        return this.post<any>('Workplace/DeleteWorkerFromWorkplace', id);
     }
 }

@@ -6,10 +6,14 @@
             </div>
         </div>
         <div class="table-container">
-            <app-table [dataSource]="items" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders"></app-table>
-        </div>
-        <div class="total-count-wrapper">
-            <p>Całkowita ilość: {{items.length}}</p>
+            <mat-tab-group animationDuration="0ms">
+                <mat-tab label="Pracownicy">
+                    <app-table [dataSource]="cooworkers$ | async" [displayedColumns]="displayedColumnsCoworkers" [displayedHeaders]="displayedHeadersCoworkers" />
+                </mat-tab>
+                <mat-tab label="Role">
+                    <app-table [dataSource]="roles" [displayedColumns]="displayedColumnsRoles" [displayedHeaders]="displayedHeadersRoles" />
+                </mat-tab>
+            </mat-tab-group>
         </div>
     </div>
 </div>
