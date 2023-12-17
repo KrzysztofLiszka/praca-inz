@@ -46,4 +46,8 @@ export class AuthService extends BaseApiService {
     updateUserRoles(newRoleName: string, updateUser: any): Observable<any> {
         return this.get<any>('Auth/UpdateUserRole/' + newRoleName + '/' + updateUser.id);
     }
+
+    updateWorkerHourlyRate(updateUser: any, newRate: number): Observable<any> {
+        return this.post<any>('Workplace/UpdateWorkerHourlyRate/' + updateUser.id + '/' + newRate, null);
+    }
 }

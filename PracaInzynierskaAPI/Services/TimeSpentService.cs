@@ -26,7 +26,7 @@ namespace PracaInzynierskaAPI.Services
         public async Task<List<TimeSpent>> GetAllItemsAsync()
         {
             var items = await _timeSpentRepository.GetAllAsync();
-            return items;
+            return items.OrderByDescending(x => x.Date).ToList();
         }
 
         public async Task<TimeSpent> GetItemByIdAsync(Guid id)

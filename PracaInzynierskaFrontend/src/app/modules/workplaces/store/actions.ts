@@ -77,7 +77,7 @@ export const getItemFailure = createAction(
     props<{ error: string }>()
 );
 
-export const DeleteWorkerFromWorkplace = createAction(
+export const deleteWorkerFromWorkplace = createAction(
     `${prefix} Delete Worker From Workplace`,
     props<{ id: string }>()
 );
@@ -88,5 +88,20 @@ export const deleteWorkerFromWorkplaceSuccess = createAction(
 
 export const deleteWorkerFromWorkplaceFailure = createAction(
     `${prefix} Delete Worker From Workplace Failure`,
+    props<{ error: string }>()
+);
+
+export const getAllPayments = createAction(
+    `${prefix} Get All Payments`,
+    props<{ from?: Date, to?: Date }>()
+);
+
+export const getAllPaymentsSuccess = createAction(
+    `${prefix} Get All Payments Success`,
+    props<{ items: any[] }>()
+);
+
+export const getAllPaymentsFailure = createAction(
+    `${prefix} Get All Payments Failure`,
     props<{ error: string }>()
 );

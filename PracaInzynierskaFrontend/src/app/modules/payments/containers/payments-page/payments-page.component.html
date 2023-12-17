@@ -1,0 +1,32 @@
+<div class="centered">
+    <div class="main-content">
+        <div class="upper-section">
+            <div class="left-side">
+                HARMONOGRAM
+            </div>
+            <div class="right-side">
+                <div class="filters" [formGroup]="formGroup">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Od kiedy?</mat-label>
+                        <input matInput [matDatepicker]="fromPicker" formControlName="fromDate" style="color: white; font-size: 14pt;">
+                        <mat-datepicker-toggle matIconSuffix [for]="fromPicker" style="color: white"></mat-datepicker-toggle>
+                        <mat-datepicker #fromPicker style="color: white"></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Do kiedy?</mat-label>
+                        <input matInput [matDatepicker]="toPicker" formControlName="toDate" style="color: white; font-size: 14pt;">
+                        <mat-datepicker-toggle matIconSuffix [for]="toPicker" style="color: white"></mat-datepicker-toggle>
+                        <mat-datepicker #toPicker style="color: white"></mat-datepicker>
+                    </mat-form-field>
+                    <mat-icon (click)="dispatchPaymentsWithFilters()">search</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="table-container">
+            <app-table [dataSource]="payments$ | async" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders"/>
+        </div>
+        <div class="total-count-wrapper">
+            <p>Całkowita ilość: {{(payments$ | async)?.length}}</p>
+        </div>
+    </div>
+</div>

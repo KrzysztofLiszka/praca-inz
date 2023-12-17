@@ -36,7 +36,14 @@ export abstract class BaseApiService {
         let params = new HttpParams()
             .set('from', fromDate)
             .set('to', toDate);
-
         return this.httpClient.get<T[]>(`${this.apiUrl}/Schedule/GetUserItemsWithFilters`, { params });
+    }
+
+    protected getPaymentsFromTimeline<T>(fromDate?: string, toDate?: string): Observable<T[]> {
+        if (!fromDate || !toDate) return this.httpClient.get<T[]>(`${this.apiUrl}/Workplace/GetPayments`);
+        let params = new HttpParams()
+            .set('from', fromDate)
+            .set('to', toDate);
+        return this.httpClient.get<T[]>(`${this.apiUrl}/Workplace/GetPayments`, { params });
     }
 }

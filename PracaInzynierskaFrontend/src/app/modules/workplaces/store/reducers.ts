@@ -4,7 +4,8 @@ import { WorkplaceActions, WorkplacesState } from "."
 export const initialState: WorkplacesState = {
     workplaces: [],
     workersFromWorkplace: [],
-    workplace: undefined
+    workplace: undefined,
+    payments: []
 }
 
 export const reducers = createReducer(
@@ -29,5 +30,12 @@ export const reducers = createReducer(
     on(WorkplaceActions.getItemSuccess, (state, action) => ({
         ...state,
         workplace: action.item
-    }))
+    })),
+    on(WorkplaceActions.getAllPayments, (state) => ({
+        ...state
+    })),
+    on(WorkplaceActions.getAllPaymentsSuccess, (state, action) => ({
+        ...state,
+        payments: action.items
+    })),
 )

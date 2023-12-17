@@ -34,6 +34,20 @@ export class WorkplaceEffects {
         )
     );
 
+    getAllPayments$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(WorkplaceActions.getAllPayments),
+            mergeMap((action) => {
+                return this.itemService.getAllPayments(action.from, action.to).pipe(
+                    map((items) => WorkplaceActions.getAllPaymentsSuccess({ items: items })),
+                    catchError((error) =>
+                        of(WorkplaceActions.getAllPaymentsFailure({ error: error.message }))
+                    )
+                );
+            })
+        )
+    );
+
     getWorkersFromWorkplace$ = createEffect(() =>
         this.actions$.pipe(
             ofType(WorkplaceActions.getAllWorkersFromWorkplace),
@@ -98,7 +112,7 @@ export class WorkplaceEffects {
 
     deleteWorkerFromWorkplace$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(WorkplaceActions.DeleteWorkerFromWorkplace),
+            ofType(WorkplaceActions.deleteWorkerFromWorkplace),
             mergeMap((action) =>
                 this.itemService.deleteWorkerFromWorkplace(action.id).pipe(
                     map(() =>

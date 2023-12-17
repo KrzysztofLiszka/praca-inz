@@ -9,5 +9,6 @@
         public Guid? WorkplaceId { get; set; }
         public byte[]? ProfilePicture { get; set; }
         public string? RoleName { get; set; }
+        public double? HourlyRate { get; set; }
     }
 }

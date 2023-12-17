@@ -8,7 +8,8 @@
         <div class="table-container">
             <mat-tab-group animationDuration="0ms">
                 <mat-tab label="Pracownicy">
-                    <app-table [dataSource]="cooworkers$ | async" [displayedColumns]="displayedColumnsCoworkers" [displayedHeaders]="displayedHeadersCoworkers" />
+                    <app-table [dataSource]="cooworkers$ | async" [displayedColumns]="displayedColumnsCoworkers" [displayedHeaders]="displayedHeadersCoworkers" 
+                    (deleteClicked)="deleteWorker($event)" />
                 </mat-tab>
                 <mat-tab label="Role">
                     <app-table [dataSource]="roles" [displayedColumns]="displayedColumnsRoles" [displayedHeaders]="displayedHeadersRoles" />
