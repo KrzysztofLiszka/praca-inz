@@ -5,4 +5,5 @@ export interface WorkerDto {
     email: string;
     workplaceId?: string;
     roleName: string;
+    hourlyRate?: number;
 }

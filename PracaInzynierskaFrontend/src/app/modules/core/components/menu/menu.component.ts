@@ -12,14 +12,15 @@ export class MenuComponent {
     constructor(private router: Router) { }
 
     menuItems: MenuItem[] = [
-        {text: "TABLICA", redirectTo: "board", matIconName: "assignment", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER]},
+        { text: "TABLICA", redirectTo: "board", matIconName: "assignment", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
         { text: "WSPÓŁPRACOWNICY", redirectTo: "coworkers", matIconName: "diversity_3", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
-        {text: "HARMONOGRAM", redirectTo: "schedule", matIconName: "schedule", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER]},
-        //{text: "SPĘDZONY CZAS", redirectTo: "login", matIconName: "work_history"},
-        {text: "DOKUMENTACJE", redirectTo: "documentation", matIconName: "article", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER]},
-        {text: "WIZUALIZACJE", redirectTo: "visualization", matIconName: "photo_library", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER]},
+        { text: "HARMONOGRAM", redirectTo: "schedule", matIconName: "schedule", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
+        { text: "SPĘDZONY CZAS", redirectTo: "spent-hours", matIconName: "work_history", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER, Roles.ACCOUNTANT] },
+        { text: "DOKUMENTACJE", redirectTo: "documentation", matIconName: "article", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
+        { text: "WIZUALIZACJE", redirectTo: "visualization", matIconName: "photo_library", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKER, Roles.WORKSPACE_OWNER] },
         { text: "ZARZĄDZANIE", redirectTo: "management", matIconName: "manage_accounts", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.WORKSPACE_OWNER] },
         { text: "UŻYTKOWNICY", redirectTo: "users", matIconName: "person", rolesThatSeeSection: [Roles.SYSTEM_ADMIN] },
+        { text: "WYPŁATY", redirectTo: "payments", matIconName: "paid", rolesThatSeeSection: [Roles.SYSTEM_ADMIN, Roles.ACCOUNTANT, Roles.WORKSPACE_OWNER] },
     ];
 
     hasRoleToSeeSection(menuItem: MenuItem): boolean {

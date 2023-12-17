@@ -18,6 +18,8 @@ import { DocumentationsModule } from './modules/documentations/documentations.mo
 import { SchedulesModule } from './modules/schedules/schedules.module';
 import { VisualizationsModule } from './modules/visualizations/visualizations.module';
 import { UsersModule } from './modules/users/users.module';
+import { SpentHoursModule } from './modules/spent-hours/spent-hours.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 
 @NgModule({
     declarations: [
@@ -39,6 +41,8 @@ import { UsersModule } from './modules/users/users.module';
         SchedulesModule,
         VisualizationsModule,
         UsersModule,
+        SpentHoursModule,
+        PaymentsModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
     ],

@@ -9,6 +9,7 @@ namespace PracaInzynierskaAPI.Profiles
         public AuthProfile()
         {
             CreateMap<User, WorkerDto>();
+            CreateMap<WorkerDto, PaymentDto>();
         }
     }
 }

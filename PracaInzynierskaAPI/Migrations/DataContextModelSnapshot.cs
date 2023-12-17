@@ -135,6 +135,36 @@ namespace PracaInzynierskaAPI.Migrations
                     b.ToTable("Schedules");
                 });
 
+            modelBuilder.Entity("PracaInzynierskaAPI.Models.TimeSpent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("SpentHours")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SpentMinutes")
+                        .HasColumnType("float");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("WorkplaceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WorkplaceId");
+
+                    b.ToTable("TimeSpents");
+                });
+
             modelBuilder.Entity("PracaInzynierskaAPI.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -144,6 +174,9 @@ namespace PracaInzynierskaAPI.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("HourlyRate")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -259,6 +292,22 @@ namespace PracaInzynierskaAPI.Migrations
                 });
 
             modelBuilder.Entity("PracaInzynierskaAPI.Models.Schedule", b =>
+                {
+                    b.HasOne("PracaInzynierskaAPI.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PracaInzynierskaAPI.Models.Workplace", "Workplace")
+                        .WithMany()
+                        .HasForeignKey("WorkplaceId");
+
+                    b.Navigation("User");
+
+                    b.Navigation("Workplace");
+                });
+
+            modelBuilder.Entity("PracaInzynierskaAPI.Models.TimeSpent", b =>
                 {
                     b.HasOne("PracaInzynierskaAPI.Models.User", "User")
                         .WithMany()

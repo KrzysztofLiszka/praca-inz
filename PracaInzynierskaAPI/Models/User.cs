@@ -11,5 +11,6 @@
         public byte[]? ProfilePicture { get; set; }
         public virtual Workplace Workplace { get; set; }
         public string? RoleName { get; set; }
+        public double? HourlyRate { get; set; }
     }
 }

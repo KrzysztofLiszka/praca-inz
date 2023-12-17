@@ -1,0 +1,38 @@
+<div class="dialog-content" [formGroup]="formGroup">
+    <div class="header">DODAJ ROZLICZENIE GODZINOWE</div>
+    <div style="margin-top: 13%;"></div>
+    <div class="main-container">
+        <div class="field">
+            <div class="description">
+                <p>Spędzono godzin</p>
+            </div>
+            <mat-form-field appearance="outline">
+                <input matInput type="number" formControlName="spentHours" style="text-align: center;"/>
+            </mat-form-field>
+        </div>
+        <div class="field">
+            <div class="description">
+                <p>Spędzono minut</p>
+            </div>
+            <mat-form-field appearance="outline">
+                <input matInput type="text" formControlName="spentMinutes" style="text-align: center;"/>
+            </mat-form-field>
+        </div>
+        <div class="field">
+            <div class="description">
+                <p>Data</p>
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Data rozliczenia</mat-label>
+                <input matInput [matDatepicker]="toPicker" formControlName="date" style="color: white; font-size: 14pt;">
+                <mat-datepicker-toggle matIconSuffix [for]="toPicker" style="color: white"></mat-datepicker-toggle>
+                <mat-datepicker #toPicker style="color: white"></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div class="buttons">
+    <button mat-raised-button color="warn" style="background-color: green;" (click)="closeWithSaving()">Zapisz</button>
+    <button mat-raised-button color="warn" (click)="closeWithoutSaving()">Zamknij</button>
+</div>
+

@@ -28,6 +28,11 @@ export class WorkplaceService extends BaseApiService {
     }
 
     deleteWorkerFromWorkplace(id: string): Observable<any> {
-        return this.post<any>('Workplace/DeleteWorkerFromWorkplace', id);
+        return this.delete<any>('Workplace/DeleteWorkerFromWorkplace/' + id);
+    }
+
+    getAllPayments(from?: Date, to?: Date): Observable<any[]> {
+        if (!from || !to) return this.getPaymentsFromTimeline<any>();
+        return this.getPaymentsFromTimeline<any>(from.toDateString(), to.toDateString());
     }
 }

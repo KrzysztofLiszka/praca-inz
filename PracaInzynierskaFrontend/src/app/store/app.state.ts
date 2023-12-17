@@ -1,6 +1,7 @@
 import { AssignmentState } from "../modules/assignments/store";
 import { DocumentationState } from "../modules/documentations/store";
 import { SchedulesState } from "../modules/schedules/store";
+import { SpentHourState } from "../modules/spent-hours/store/spent-hour.state";
 import { UsersState } from "../modules/users/store/user.state";
 import { VisualizationsState } from "../modules/visualizations/store";
 import { WorkplacesState } from "../modules/workplaces/store";
@@ -11,5 +12,6 @@ export interface AppState {
     documentationsState: DocumentationState,
     schedulesState: SchedulesState,
     visualizationsState: VisualizationsState,
-    usersState: UsersState
+    usersState: UsersState,
+    spentHoursState: SpentHourState
 }

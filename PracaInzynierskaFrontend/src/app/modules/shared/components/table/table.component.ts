@@ -49,4 +49,8 @@ export class TableComponent {
     changeRoleName(event: any, user: any): void {
         this.authService.updateUserRoles(event.target.value, user).subscribe(res => window.location.reload);
     }
+
+    onHourlyRateBlur(event: any, user: any): void {
+        this.authService.updateWorkerHourlyRate(user, event.target.value).subscribe(res => window.location.reload);
+    }
 }

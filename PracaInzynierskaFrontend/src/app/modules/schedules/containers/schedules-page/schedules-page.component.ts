@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { AddScheduleDialogComponent, EditScheduleDialogComponent } from '../../c
     styleUrls: ['./schedules-page.component.scss']
 })
 
-export class SchedulesPageComponent implements OnDestroy {
+export class SchedulesPageComponent implements OnDestroy, OnInit {
 
     formGroup = this.fb.group({
         fromDate: new FormControl<Date | null>(null),

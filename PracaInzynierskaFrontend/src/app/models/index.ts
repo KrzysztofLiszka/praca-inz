@@ -7,3 +7,4 @@ export * from './assignment.model';
 export * from './documentation.model';
 export * from './schedule.model';
 export * from './visualization.model';
+export * from './time-spent.model';

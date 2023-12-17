@@ -1,0 +1,21 @@
+<div class="centered">
+    <div class="main-content">
+        <div class="upper-section">
+            <div class="left-side">
+                SPĘDZONY CZAS
+            </div>
+            <div class="right-side">
+                <button mat-raised-button class="add-button" style="background-color: #656262; color: #e6e4e4;" (click)="openAddDialog()">
+                    DODAJ ROZLICZENIE GODZINOWE<mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="table-container">
+            <app-table [dataSource]="timeSpents$ | async" [displayedColumns]="displayedColumns" [displayedHeaders]="displayedHeaders" 
+                (editClicked)="openEditDialog($event)" (deleteClicked)="deleteTimeSpent($event)" />
+        </div>
+        <div class="total-count-wrapper">
+            <p>Całkowita ilość: {{(timeSpents$ | async)?.length}}</p>
+        </div>
+    </div>
+</div>

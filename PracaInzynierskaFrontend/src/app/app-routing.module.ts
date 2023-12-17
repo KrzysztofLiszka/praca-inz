@@ -10,6 +10,8 @@ import { DocumentationsPageComponent } from './modules/documentations/containers
 import { SchedulesPageComponent } from './modules/schedules/containers';
 import { EditVisualizationPageComponent, VisualizationsPageComponent } from './modules/visualizations/containers';
 import { UsersPageComponent } from './modules/users/containers';
+import { SpentHoursPageComponent } from './modules/spent-hours/containers';
+import { PaymentsPageComponent } from './modules/payments/containers';
 
 const routes: Routes = [
     { path: "login", component: LoginPageComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
     { path: "visualization", component: VisualizationsPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
     { path: "edit-visualization/:id", component: EditVisualizationPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
     { path: "users", component: UsersPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
+    { path: "spent-hours", component: SpentHoursPageComponent, canActivate: [AuthGuard, HasTeamGuard] },
+    { path: "payments", component: PaymentsPageComponent, canActivate: [AuthGuard, HasTeamGuard] }
 ];
 
 @NgModule({

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PracaInzynierskaAPI.Constants;
+using PracaInzynierskaAPI.DTOs;
 using PracaInzynierskaAPI.Models;
 using PracaInzynierskaAPI.Services;
 using PracaInzynierskaAPI.Services.Interfaces;
@@ -18,14 +20,21 @@ namespace PracaInzynierskaAPI.Controllers
         private readonly IWorkplaceService _workplaceService;
         private readonly ICurrentUserService _currentUserService;
         private readonly ISqlRepository<User> _userRepository;
+        private readonly IBaseItemService<TimeSpent> _timeSpentService;
+        private readonly IMapper _mapper;
+        private readonly IAuthService _authService;
 
         public WorkplaceController(IBaseItemService<Workplace> baseItemService, IWorkplaceService workplaceService, 
-            ICurrentUserService currentUserService, ISqlRepository<User> userRepository) : base(baseItemService)
+            ICurrentUserService currentUserService, ISqlRepository<User> userRepository, 
+            IBaseItemService<TimeSpent> timeSpentService, IMapper mapper, IAuthService authService) : base(baseItemService)
         {
             _baseItemService = baseItemService;
             _workplaceService = workplaceService;
             _currentUserService = currentUserService;
             _userRepository = userRepository;
+            _timeSpentService = timeSpentService;
+            _mapper = mapper;
+            _authService = authService;
         }
 
         [AllowAnonymous]
@@ -74,13 +83,47 @@ namespace PracaInzynierskaAPI.Controllers
         }
 
         [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.WorkspaceOwner}")]
-        [HttpPost("DeleteWorkerFromWorkplace")]
+        [HttpDelete("DeleteWorkerFromWorkplace/{workerId}")]
         public async Task<IActionResult> DeleteWorkerFromWorkplace(Guid workerId)
         {
             var user = await _userRepository.GetByIdAsync(workerId);
             user.WorkplaceId = null;
             await _userRepository.UpdateAsync(user);
             return Ok();
+        }
+
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.WorkspaceOwner}")]
+        [HttpPost("UpdateWorkerHourlyRate/{workerId}/{newRate}")]
+        public async Task<IActionResult> UpdateWorkerHourlyRate(Guid workerId, double newRate)
+        {
+            var user = await _userRepository.GetByIdAsync(workerId);
+            user.HourlyRate = newRate;
+            await _userRepository.UpdateAsync(user);
+            return Ok();
+        }
+
+        [Authorize(Roles = $"{Roles.SystemAdmin}, {Roles.WorkspaceOwner}, {Roles.Accountant}")]
+        [HttpGet("GetPayments")]
+        public async Task<ActionResult> GetPayments([FromQuery] DateTime? from, [FromQuery] DateTime? to)
+        {
+            var user = await _authService.GetCurrentlyLoggedWorker();
+            var workersFromWorkplace = await _workplaceService.GetWorkersFromWorkplace();
+            var timeSpentsFromWorkplace = await _timeSpentService.GetAllItemsAsync();
+            if(from != null && to != null)
+            {
+                timeSpentsFromWorkplace = timeSpentsFromWorkplace
+                    .Where(x => x.Date >= from && x.Date <= to && x.WorkplaceId == user.WorkplaceId).ToList();
+            }
+            var payments = _mapper.Map<List<PaymentDto>>(workersFromWorkplace);
+            foreach (var payment in payments)
+            {
+                var usersTimeSpents = timeSpentsFromWorkplace.Where(x => x.UserId == payment.Id).ToList();
+                var totalMinutesSpent = usersTimeSpents.Sum(x => x.SpentMinutes);
+                var totalHoursSpent = (totalMinutesSpent / 60) + usersTimeSpents.Sum(x => x.SpentHours);
+                payment.Payment = payment.HourlyRate * totalHoursSpent;
+            }
+
+            return Ok(payments);
         }
     }
 }
